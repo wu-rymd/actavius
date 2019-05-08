@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+    <title> {% block title %} {% endblock %} | Actavius </title>
+    {% endblock %}
+  </head>
+
+  <body>
+    {% set msgs = get_flashed_messages() %}
+      {% for each in msgs %}
+      {{ each }}
+      <br>
+      {% endfor %}
+      <br>
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+    {% endblock %}
+  </body>
+</html>
