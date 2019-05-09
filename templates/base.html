@@ -8,7 +8,11 @@
 
   <body>
 
-   {% set msgs = get_flashed_messages( with_categories=true ) %}
+    <div class="topthing navbar bg-dark">
+      Hello
+    </div>
+    
+    {% set msgs = get_flashed_messages( with_categories=true ) %}
     {% for category, msg in msgs %}
     <div class="alert alert-{{ category }} m-3" role="alert">
       {{ msg }}
@@ -29,7 +33,8 @@
 
     {% block style %}
     {% endblock %}
-    
+
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     <script
       src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
