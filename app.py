@@ -13,6 +13,30 @@ app.secret_key = urandom(32)
 def index():
     return render_template("index.html")
 
+@app.route("/register")
+def register():
+    return "hi"
+
+@app.route("/login")
+def register():
+    return "hi"
+
+@app.route("/search")
+def register():
+    return "hi"
+
+@app.route("/user")
+def register():
+    return "hi"
+
+@app.route("/financial")
+def register():
+    return "hi"
+
+@app.route("/college")
+def register():
+    return "hi"
+
 if __name__ == "__main__":
     app.debug = True
     create_db.setup() #setup database
