@@ -7,6 +7,14 @@ pd 7
 ---------------------
 P05 -- Fin: Actavius
 
+/////////// Zone of Reflection \\\\\\\\\\\
+------------------------------------------
+PRE-DEVELOPMENT DESIGN DOC CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+raymondW -- 2018-05-12 21:40
+* Based on comments from peer review, we found that the extra feature of "gamifying" the college application process was unclear, and we believe that at this time it is not in the core of what we want our web app to be. Accordingly, we decided to move this to the bottom of priorities in extra features -- to be rediscussed if time permits.
+* Another suggestion made by a peer was to allow users to specify interests or to allow ranking/priority of colleges. We believe that this feature could be helpful, but should be an extra feature as we want to focus on the convenience of combining several services into one, rather than diving into a single feature that Naviance already does well.
+
 
  ______   ______   __   __   __       ______   _______
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
