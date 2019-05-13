@@ -18,24 +18,29 @@ P05 -- Fin: Actavius
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-firstL -- yyyy-mm-dd hh:mm
---------------------------------------------------------------
-+ Added feature
-- Other changes
-==============================================================
-
-firstL -- yyyy-mm-dd hh:mm <NEWER ENTRY>
---------------------------------------------------------------
-+ Added feature
-- Other changes
-==============================================================
-
 tinaW -- 2019-05-08 13:26
 --------------------------------------------------------------
 + Added flask starter kit
 ==============================================================
 
+raymondW -- 2019-05-09 18:00
+--------------------------------------------------------------
++ Added devlog template
++ Added requirements.txt
++ Added components overview page, timeline to design doc
++ Added util/create_db.py to set up db upon Flask app startup
+==============================================================
+
 tinaW -- 2019-05-09 18:06
 --------------------------------------------------------------
 + Added register and login functionality
+==============================================================
+
+raymondW -- 2019-05-12 21:32
+--------------------------------------------------------------
++ Updated extra features, db schema in devlog addressing peer review
++ Updated code in /util/create_db.py to reflect updated db schema
++ Modularized code for functions that work with database (/util/database.py)
++ Revamped navbar, login/register pages
++ Fixed bug in authenticating user/pass combo when indexing for username
 ==============================================================
