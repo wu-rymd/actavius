@@ -70,15 +70,15 @@ def logout():
 
 @app.route("/search")
 def search():
-    return "hi"
+    return render_template('search.html')
 
-@app.route("/user")
-def user():
-    return "hi"
+@app.route("/profile")
+def profile():
+    return render_template('profile.html')
 
 @app.route("/fin_aid")
 def fin_aid():
-    return "hi"
+    return render_template('finaid.html')
 
 @app.route("/college")
 def college():
