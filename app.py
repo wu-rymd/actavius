@@ -3,7 +3,7 @@ from os import urandom #stdlib
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from util import create_db
+from util import create_db, database
 
 
 app = Flask(__name__)
@@ -11,6 +11,8 @@ app.secret_key = urandom(32)
 
 @app.route("/")
 def index():
+    if 'username' in session: #if logged in:
+        return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'])
     return render_template("index.html")
 
 @app.route("/register")
@@ -20,24 +22,21 @@ def register():
 @app.route('/register_auth', methods = ['POST'])
 def register_auth():
     '''This function checks the form on the signup page and calls register() to register the user into the database.'''
-    username = request.form['username']
+    name = request.form['name'].strip()
+    username = request.form['username'].strip()
     password = request.form['password']
-    name = request.form['name']
     confirmed_pass = request.form['confirmedPassword']
-    if username == "":
-        flash("Please make sure to enter a username!")
-        return redirect(url_for('register'))
-    elif password == "":
-        flash("Please make sure to enter a password!")
+    if name == "" or username == "" or password == "":
+        flash("All fields are required.", "danger")
         return redirect(url_for('register'))
     elif password != confirmed_pass: # checks to make sure two passwords entered are the same
-        flash("Please make sure the passwords you enter are the same.")
+        flash("Please make sure the passwords you enter are the same.", "danger")
         return redirect(url_for('register'))
     else:
-        if create_db.register(username, password, name):
-            flash("You have successfully registered.")
+        if database.register(username, password, name):
+            flash("You have successfully registered.", "success")
         else:
-            flash("Please enter another username. The one you entered is already in the database.")
+            flash("There is already an account with that username.", "danger")
             return redirect(url_for('register'))
     return redirect('/login')
 
@@ -52,19 +51,21 @@ def login_auth():
     username = request.form['username']
     password = request.form['password']
 
-    if create_db.authenticate(username, password):
+    if database.authenticate(username, password):
         session['username'] = username
-        flash("You have successfully logged in.")
+        session['name'] = database.get_name_from_username(username)
+        flash("You have successfully logged in.", "success")
         return redirect('/')
     else:
-        flash("Invalid username and password combination")
+        flash("Invalid username and password combination", "danger")
         return render_template('login.html')
 
 @app.route('/logout')
 def logout():
     '''This function removes the username from the session, logging the user out. Redirects user to home page.'''
     session.pop('username') # ends session
-    flash("You have successfully logged out.")
+    session.pop('name') # ends session
+    flash("You have successfully logged out.", "success")
     return redirect('/')
 
 @app.route("/search")

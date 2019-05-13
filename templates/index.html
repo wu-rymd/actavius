@@ -5,4 +5,9 @@ Home Page
 {% endblock %}
 {% block content %}
 <h1>Welcome to Actavius</h1>
+
+{% if loggedIn %}
+<h3>Hi, {{ name }}!</h3>
+{% endif %}
+
 {% endblock %}

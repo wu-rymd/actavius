@@ -8,25 +8,52 @@
 
   <body>
 
-    <div class="topthing navbar bg-dark">
-      Hello
+    <!-- navbar -->
+    <div class="navbar navbar-light bg-light mb-3 fixed-top">
+      <div class="navbar-brand mr-auto">
+        <a class="navbar-brand" href="/">Actavius</a>
+        <a class="btn btn-outline-primary mx-1" href="/">Feature 1</a>
+        <a class="btn btn-outline-primary mx-1" href="/">Feature 2</a>
+        <a class="btn btn-outline-primary mx-1" href="/">Feature 3</a>
+      </div>
+      {% if not loggedIn %}
+      <a class="btn btn-outline-primary mx-1" href="/login">Log in</a>
+      <a class="btn btn-outline-secondary mx-1" href="/register">Register</a>
+      {% else %}
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Logged in as {{ username }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/settings">Account settings</a>
+          <a class="dropdown-item text-danger" href="/logout">Log out</a>
+        </div>
+      </div>
+      {% endif %}
     </div>
-    
-    {% set msgs = get_flashed_messages( with_categories=true ) %}
-    {% for category, msg in msgs %}
-    <div class="alert alert-{{ category }} m-3" role="alert">
-      {{ msg }}
+    <!-- end navbar -->
+
+    <!-- content container -->
+    <div class="m-3" style="padding-top: 66px;">
+
+      <!-- flashed messages -->
+      {% set msgs = get_flashed_messages( with_categories=true ) %}
+      {% for category, msg in msgs %}
+      <div class="alert alert-{{ category }} m-3" role="alert">
+        {{ msg }}
+      </div>
+      {% endfor %}
+      <!-- end flashed messages -->
+      
+      {% block content %}
+      {% endblock %}
+      
+      {% block footer %}
+      <hr> <em> Team Wong Ray Down a One Lin Street </em>
+      {% endblock %}
+
     </div>
-    {% endfor %}
-    
-    <br>
-    
-    {% block content %}
-    {% endblock %}
-    
-    {% block footer %}
-    <hr> <em> Team Wong Ray Down a One Lin Street </em>
-    {% endblock %}
+    <!-- end content container -->
 
     {% block javascript %}
     {% endblock %}
