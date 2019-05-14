@@ -18,7 +18,6 @@ def setup():
         id               INTEGER PRIMARY KEY AUTOINCREMENT
         name             TEXT NOT NULL
         deadline         TEXT NOT NULL
-        financial_aid    STRING NOT NULL
         submitted        BOOLEAN NOT NULL
         additional_info  STRING
         student_id       INTEGER NOT NULL
@@ -46,7 +45,7 @@ def setup():
     c = db.cursor()
     command = "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL)"
     c.execute(command)
-    command = "CREATE TABLE IF NOT EXISTS colleges (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, deadline TEXT NOT NULL, financial_aid STRING NOT NULL, submitted BOOLEAN NOT NULL, additional_info STRING, student_id INTEGER NOT NULL, rank INTEGER UNIQUE)"
+    command = "CREATE TABLE IF NOT EXISTS colleges (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, deadline TEXT NOT NULL, submitted BOOLEAN NOT NULL, additional_info STRING, student_id INTEGER NOT NULL, rank INTEGER UNIQUE)"
     c.execute(command)
     command = "CREATE TABLE IF NOT EXISTS questions (id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT NOT NULL, answer TEXT, college_id INTEGER NOT NULL)"
     c.execute(command)
