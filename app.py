@@ -74,7 +74,10 @@ def search():
 
 @app.route("/profile")
 def profile():
-    return render_template('profile.html')
+    if 'username' in session: #if logged in:
+        return render_template("profile.html", loggedIn=True)
+    flash("Please log in to see your profile.", "warning")
+    return redirect('/')
 
 @app.route("/fin_aid")
 def fin_aid():

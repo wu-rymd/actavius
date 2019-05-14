@@ -12,8 +12,8 @@
     <div class="navbar navbar-light bg-light mb-3 fixed-top">
       <div class="navbar-brand mr-auto">
         <a class="navbar-brand" href="/">Actavius</a>
-        <a class="btn btn-outline-primary mx-1" href="/">Feature 1</a>
-        <a class="btn btn-outline-primary mx-1" href="/">Feature 2</a>
+        <a class="btn btn-outline-primary mx-1" href="/search">College Search</a>
+        <a class="btn btn-outline-primary mx-1" href="/fin_aid">Financial Aid</a>
         <a class="btn btn-outline-primary mx-1" href="/">Feature 3</a>
       </div>
       {% if not loggedIn %}
@@ -25,7 +25,7 @@
           Logged in as {{ username }}
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/settings">Account settings</a>
+          <a class="dropdown-item" href="/profile">Account settings</a>
           <a class="dropdown-item text-danger" href="/logout">Log out</a>
         </div>
       </div>
@@ -44,10 +44,10 @@
       </div>
       {% endfor %}
       <!-- end flashed messages -->
-      
+
       {% block content %}
       {% endblock %}
-      
+
       {% block footer %}
       <hr> <em> Team Wong Ray Down a One Lin Street </em>
       {% endblock %}
