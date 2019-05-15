@@ -73,7 +73,7 @@ def draft_existing(draft_id):
         if not content: #if returned False
             flash("Unauthorized access to draft!", "danger")
             return redirect(url_for('index'))
-        return render_template("draft_view.html", content=content)
+        return render_template("draft_view.html", content=content, loggedIn=True, username=session['username'], name=session['name'])
     else: #POST request
         question = request.form['question']
         answer = request.form['answer']

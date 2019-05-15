@@ -11,7 +11,11 @@ Drafts
 
 <form action="#" method="POST">
 
+  {% if content['question'] == "(New draft)" %}
+  <input class="form-control" name="question" placeholder="Question prompt">
+  {% else %}
   <input class="form-control" name="question" value="{{ content['question'] }}" placeholder="Question prompt">
+  {% endif %}
 
   <h3>(for college {{ content['college_id'] }})</h3>
 
