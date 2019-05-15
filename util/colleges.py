@@ -16,8 +16,6 @@ def add_colleges(college, deadline, submitted, student_id):
     db.commit()
     db.close()
 
-# add_colleges("Harvard", "2018-11-15", False, 1)
-
 def remove_colleges(college, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
@@ -26,4 +24,11 @@ def remove_colleges(college, student_id):
     db.commit()
     db.close()
 
-# remove_colleges("Harvard", 1)
+def get_student_colleges(student_id):
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    command = "SELECT name, deadline, submitted, additional_info from colleges WHERE student_id ={}".format(student_id)
+    c.execute(command)
+    data = c.fetchall()
+    db.close()
+    return data

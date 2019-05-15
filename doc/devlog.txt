@@ -60,6 +60,12 @@ raymondW -- 2019-05-14 15:35
 + Contacted College AI API admins for API key request
 ==============================================================
 
+tinaW -- 2019-05-14 18:00
+--------------------------------------------------------------
++ Added setup of files
++ Changed route of account settings to profile and routes on navbar
+==============================================================
+
 raymondW -- 2019-05-15 01:00
 --------------------------------------------------------------
 + Added /drafting route
@@ -80,4 +86,9 @@ jasonL -- 2019-05-15 15:06
 rayO -- 2019-05-15 16:33
 --------------------------------------------------------------
 + Moved stylesheets up on base.html to fix issue on first load
+==============================================================
+
+tinaW -- 2019-05-15 16:54
+--------------------------------------------------------------
++ Added fxns to get college info, add todo, and add and remove colleges in util/
 ==============================================================
