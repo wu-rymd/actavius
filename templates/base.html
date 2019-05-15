@@ -14,7 +14,7 @@
         <a class="navbar-brand" href="/">Actavius</a>
         <a class="btn btn-outline-primary mx-1" href="/search">College Search</a>
         <a class="btn btn-outline-primary mx-1" href="/fin_aid">Financial Aid</a>
-        <a class="btn btn-outline-primary mx-1" href="/">Feature 3</a>
+        <a class="btn btn-outline-primary mx-1" href="/drafting">My drafts</a>
       </div>
       {% if not loggedIn %}
       <a class="btn btn-outline-primary mx-1" href="/login">Log in</a>
@@ -34,12 +34,12 @@
     <!-- end navbar -->
 
     <!-- content container -->
-    <div class="m-3" style="padding-top: 66px;">
+    <div class="mx-5" style="margin-top: 88px;">
 
       <!-- flashed messages -->
       {% set msgs = get_flashed_messages( with_categories=true ) %}
       {% for category, msg in msgs %}
-      <div class="alert alert-{{ category }} m-3" role="alert">
+      <div class="alert alert-{{ category }}" role="alert">
         {{ msg }}
       </div>
       {% endfor %}
@@ -49,7 +49,7 @@
       {% endblock %}
 
       {% block footer %}
-      <hr> <em> Team Wong Ray Down a One Lin Street </em>
+      <hr> <em> &copy; 2019 Wong Ray Down a One Lin Street </em>
       {% endblock %}
 
     </div>
