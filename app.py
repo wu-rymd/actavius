@@ -1,7 +1,8 @@
 import sqlite3 #stdlib
 from os import urandom #stdlib
+import csv, json
 
-from flask import Flask, render_template, request, session, redirect, url_for, flash #pip install flask
+from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
 from util import create_db, database, drafts
 
@@ -79,7 +80,7 @@ def draft_existing(draft_id):
         answer = request.form['answer']
         drafts.save(draft_id, question, answer)
         flash("Your draft has been saved!", "success")
-        return redirect(url_for('drafts_all'))    
+        return redirect(url_for('drafts_all'))
 
 @app.route("/login")
 def login():
@@ -130,8 +131,27 @@ def fin_aid():
         return redirect(url_for('login'))
     return render_template('finaid.html', loggedIn=True, username=session['username'], name=session['name'])
 
-@app.route("/college")
-def college():
+@app.route("/college/<int:college_id>")
+def college(college_id):
+    # csv_names = ['admission.csv','faculty.csv','finaid.csv','graduate.csv','graduation.csv','race.csv','size.csv','statistics.csv','students.csv','test.csv','tuition.csv']
+    # college_json = {}
+    # for file in csv_names:
+    #     f = csv.DictReader(open('./data/'+file,'r'))
+    #     dict_list = []
+    #     for line in f:
+    #         dict_list.append(line)
+    #     for college in dict_list:
+    #         college_name = college["institution name"]
+    #         if college_name not in college_json:
+    #             college_json[college_name] = {}
+    #         for key in college:
+    #             if key != "institution name":
+    #                 college_json[college_name][key] = college[key]
+
+    f = open('data/college_data.json','r').read()
+
+    # read f as string, convert to dict that is bound to var college_json
+    print(json.loads(f)["University of Alabama in Huntsville"])
     return "hi"
 
 if __name__ == "__main__":
