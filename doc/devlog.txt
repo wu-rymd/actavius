@@ -52,3 +52,17 @@ raymondW -- 2019-05-12 21:32
 + Revamped navbar, login/register pages
 + Fixed bug in authenticating user/pass combo when indexing for username
 ==============================================================
+
+raymondW -- 2019-05-14 15:35
+--------------------------------------------------------------
++ Researched/downloaded CSVs from IPEDS Data Center
++ Added IPEDS CSVs and TAP Fall Headcount CSV to repo
++ Contacted College AI API admins for API key request
+==============================================================
+
+raymondW -- 2019-05-15 01:00
+--------------------------------------------------------------
++ Added /drafting route
++ Allow users to create, save edits, delete drafts
++ Fixed bug where logged in username would not show on some pages
+==============================================================
