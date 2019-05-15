@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Drafts
+{% endblock %}
+
+{% block content %}
+<h1>
+  Draft ID {{ content['id'] }}
+</h1>
+
+<form action="#" method="POST">
+
+  <input class="form-control" name="question" value="{{ content['question'] }}" placeholder="Question prompt">
+
+  <h3>(for college {{ content['college_id'] }})</h3>
+
+  <br>
+
+  <textarea class="form-control" rows="20" name="answer" placeholder="Your response">{{ content['answer'] }}</textarea>
+
+  <br>
+
+  <input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Save">
+
+</form>
+{% endblock %}

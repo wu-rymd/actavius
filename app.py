@@ -3,8 +3,9 @@ from os import urandom #stdlib
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from util import create_db, database
+from util import create_db, database, drafts
 
+# TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
@@ -40,6 +41,46 @@ def register_auth():
             return redirect(url_for('register'))
     return redirect('/login')
 
+@app.route("/drafting", methods=['GET','POST']) #get for just showing list, post to process new draft
+def drafts_all():
+    if 'username' not in session:
+        flash("You must be logged in to view that page!", "danger")
+        return redirect(url_for('login'))
+    elif request.method == 'GET':
+        drafts_list = drafts.get_all_drafts(session['username'])
+        return render_template("drafts_list.html", drafts=drafts_list, loggedIn=True, username=session['username'], name=session['name'])
+    else: #POST request
+        new_draft_form = request.form.get('new-draft') #None if create new draft button not clicked (must be delete button)
+        if not new_draft_form:
+            delete_form = request.form.get('delete')
+            id_to_delete = delete_form[delete_form.find("ID ")+3 :]
+            drafts.delete(id_to_delete)
+            flash("Draft ID " + id_to_delete + " deleted!", "success")
+            return redirect(url_for('drafts_all'))
+        else:
+            new_id = drafts.create_new_draft(session['username'])
+            flash("New draft created!", "success")
+            return redirect(url_for('draft_existing', draft_id=new_id))
+
+@app.route("/drafting/<int:draft_id>", methods=['GET','POST'])
+def draft_existing(draft_id):
+    if 'username' not in session:
+        flash("You must be logged in to view that page!", "danger")
+        return redirect(url_for('login'))
+    elif request.method == 'GET':
+        #make sure draft id belongs to user
+        content = drafts.get_draft(session['username'], draft_id)
+        if not content: #if returned False
+            flash("Unauthorized access to draft! 가이놈의쉐키", "danger")
+            return redirect(url_for('index'))
+        return render_template("draft_view.html", content=content)
+    else: #POST request
+        question = request.form['question']
+        answer = request.form['answer']
+        drafts.save(draft_id, question, answer)
+        flash("Your draft has been saved!", "success")
+        return redirect(url_for('drafts_all'))    
+
 @app.route("/login")
 def login():
     '''This function renders the HTML template for the login page.'''
@@ -70,18 +111,24 @@ def logout():
 
 @app.route("/search")
 def search():
-    return render_template('search.html')
+    if 'username' not in session:
+        flash("You must be logged in to view that page!", "danger")
+        return redirect(url_for('login'))
+    return render_template('search.html', loggedIn=True, username=session['username'], name=session['name'])
 
 @app.route("/profile")
 def profile():
-    if 'username' in session: #if logged in:
-        return render_template("profile.html", loggedIn=True)
-    flash("Please log in to see your profile.", "warning")
-    return redirect('/')
+    if 'username' not in session:
+        flash("You must be logged in to view that page!", "danger")
+        return redirect(url_for('login'))
+    return render_template("profile.html", loggedIn=True, username=session['username'], name=session['name'])
 
 @app.route("/fin_aid")
 def fin_aid():
-    return render_template('finaid.html')
+    if 'username' not in session:
+        flash("You must be logged in to view that page!", "danger")
+        return redirect(url_for('login'))
+    return render_template('finaid.html', loggedIn=True, username=session['username'], name=session['name'])
 
 @app.route("/college")
 def college():
