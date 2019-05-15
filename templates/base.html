@@ -34,12 +34,12 @@
     <!-- end navbar -->
 
     <!-- content container -->
-    <div class="m-3" style="padding-top: 66px;">
+    <div class="mx-5" style="margin-top: 88px;">
 
       <!-- flashed messages -->
       {% set msgs = get_flashed_messages( with_categories=true ) %}
       {% for category, msg in msgs %}
-      <div class="alert alert-{{ category }} m-3" role="alert">
+      <div class="alert alert-{{ category }}" role="alert">
         {{ msg }}
       </div>
       {% endfor %}

@@ -71,7 +71,7 @@ def draft_existing(draft_id):
         #make sure draft id belongs to user
         content = drafts.get_draft(session['username'], draft_id)
         if not content: #if returned False
-            flash("Unauthorized access to draft! 가이놈의쉐키", "danger")
+            flash("Unauthorized access to draft!", "danger")
             return redirect(url_for('index'))
         return render_template("draft_view.html", content=content)
     else: #POST request
