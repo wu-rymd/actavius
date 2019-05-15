@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     {% block head %}
     <title> {% block title %} {% endblock %} | Actavius </title>
     {% endblock %}
@@ -61,8 +63,6 @@
     {% block style %}
     {% endblock %}
 
-    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     <script
       src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.js" crossorigin="anonymous"></script>
