@@ -52,3 +52,8 @@ raymondW -- 2019-05-12 21:32
 + Revamped navbar, login/register pages
 + Fixed bug in authenticating user/pass combo when indexing for username
 ==============================================================
+
+jasonL -- 2019-05-15 09:54
+--------------------------------------------------------------
++ Added database methods for supplements
+==============================================================
