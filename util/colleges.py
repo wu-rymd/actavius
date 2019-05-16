@@ -1,5 +1,5 @@
 import sqlite3
-import os
+import os, json
 
 # for scalability/hosting on Apache server
 DIR = os.path.dirname(__file__) or '.'
@@ -34,3 +34,13 @@ def get_student_colleges(student_id):
     data = c.fetchall()
     db.close()
     return data
+
+def get_college_from_id(college_id):
+    id_converter = json.loads(open('data/colleges.json','r').read())
+    # ids = {id_converter['id'][k] for k in id_converter['id'].keys()}
+    # colleges = {k for k in id_converter['names'].keys()}
+    # diff = colleges.difference(ids)
+    # print(len(diff))
+    return id_converter['id'][str(college_id)]
+
+# get_college_from_id(101602)

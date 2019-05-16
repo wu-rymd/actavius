@@ -92,3 +92,9 @@ tinaW -- 2019-05-15 16:54
 --------------------------------------------------------------
 + Added fxns to get college info, add todo, and add and remove colleges in util/
 ==============================================================
+
+jasonL -- 2019-05-16 13:11
+--------------------------------------------------------------
++ Made look up for college name based on id
++ Passed data to college page based on college id
+==============================================================

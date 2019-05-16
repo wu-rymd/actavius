@@ -4,7 +4,7 @@ import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from util import create_db, database, drafts
+from util import create_db, database, drafts, colleges
 
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
@@ -133,28 +133,49 @@ def fin_aid():
 
 @app.route("/college/<int:college_id>")
 def college(college_id):
-    # csv_names = ['admission.csv','faculty.csv','finaid.csv','graduate.csv','graduation.csv','race.csv','size.csv','statistics.csv','students.csv','test.csv','tuition.csv']
-    # college_json = {}
-    # for file in csv_names:
-    #     f = csv.DictReader(open('./data/'+file,'r'))
-    #     dict_list = []
-    #     for line in f:
-    #         dict_list.append(line)
-    #     for college in dict_list:
-    #         college_name = college["institution name"]
-    #         if college_name not in college_json:
-    #             college_json[college_name] = {}
-    #         for key in college:
-    #             if key != "institution name":
-    #                 college_json[college_name][key] = college[key]
-
     f = open('data/college_data.json','r').read()
-
-    # read f as string, convert to dict that is bound to var college_json
-    print(json.loads(f)["University of Alabama in Huntsville"])
-    return "hi"
+    college_name = colleges.get_college_from_id(college_id)
+    college_data = json.loads(f)[college_name]
+    act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
+    act_75 = college_data['ADM2017.ACT Composite 75th percentile score']
+    sat_eng_25 = college_data['ADM2017.SAT Evidence-Based Reading and Writing 25th percentile score']
+    sat_eng_75 = college_data['ADM2017.SAT Evidence-Based Reading and Writing 75th percentile score']
+    sat_math_25 = college_data['ADM2017.SAT Math 25th percentile score']
+    sat_math_75 = college_data['ADM2017.SAT Math 75th percentile score']
+    grad_rate = college_data['DRVGR2017.Graduation rate, total cohort']
+    tuition = college_data['DRVIC2017.Tuition and fees, 2017-18']
+    admit = college_data['DRVIC2017.Tuition and fees, 2017-18']
+    apply = college_data['ADM2017.Applicants total']
+    print(college_name,act_25,act_75,sat_eng_25,sat_eng_75,sat_math_25,sat_math_75,grad_rate,tuition,admit,apply)
+    return render_template("college.html",name = college_name,
+                                          act_25 = act_25,
+                                          act_75 = act_75,
+                                          sat_eng_25 = sat_eng_25,
+                                          sat_eng_75 = sat_eng_75,
+                                          sat_math_25 = sat_math_25,
+                                          sat_math_75 = sat_math_75,
+                                          grad_rate = grad_rate,
+                                          tuition = tuition,
+                                          admit = admit,
+                                          apply = apply)
 
 if __name__ == "__main__":
     app.debug = True
     create_db.setup() #setup database
     app.run()
+
+
+# csv_names = ['admission.csv','faculty.csv','finaid.csv','graduate.csv','graduation.csv','race.csv','size.csv','statistics.csv','students.csv','test.csv','tuition.csv']
+# college_json = {}
+# for file in csv_names:
+#     f = csv.DictReader(open('./data/'+file,'r'))
+#     dict_list = []
+#     for line in f:
+#         dict_list.append(line)
+#     for college in dict_list:
+#         college_name = college["institution name"]
+#         if college_name not in college_json:
+#             college_json[college_name] = {}
+#         for key in college:
+#             if key != "institution name":
+#                 college_json[college_name][key] = college[key]
