@@ -19,16 +19,18 @@ def add_colleges(college, deadline, submitted, student_id):
 def remove_colleges(college, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
-    command = "DELETE FROM colleges WHERE student_id = {} AND name = {}".format(student_id, repr(college))
-    c.execute(command)
+    params = (student_id,repr(college))
+    command = "DELETE FROM colleges WHERE student_id = ? AND name = ?"
+    c.execute(command, params)
     db.commit()
     db.close()
 
 def get_student_colleges(student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
-    command = "SELECT name, deadline, submitted, additional_info from colleges WHERE student_id ={}".format(student_id)
-    c.execute(command)
+    params = (student_id,)
+    command = "SELECT name, deadline, submitted, additional_info from colleges WHERE student_id =?"
+    c.execute(command,params)
     data = c.fetchall()
     db.close()
     return data
