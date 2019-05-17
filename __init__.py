@@ -156,7 +156,8 @@ def college(college_id):
                                           grad_rate = grad_rate,
                                           tuition = tuition,
                                           admit = admit,
-                                          apply = apply)
+                                          apply = apply,
+                                          loggedIn = is_logged_in)
 
 @app.route("/add/<int:college_id>", methods=['GET','POST'])
 def add(college_id):

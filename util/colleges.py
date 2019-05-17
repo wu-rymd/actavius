@@ -35,7 +35,7 @@ def get_student_colleges(student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
     params = (student_id,)
-    command = "SELECT name, deadline, submitted, additional_info from colleges WHERE student_id =?"
+    command = "SELECT * from colleges WHERE student_id =?"
     c.execute(command,params)
     data = c.fetchall()
     db.close()
@@ -47,22 +47,14 @@ def get_college_from_id(college_id):
         
     FILE_LINK = DIR + "data/college_data.json"
 
-    id_converter = json.loads(open(FILE_LINK,'r').read())
-    # ids = {id_converter['id'][k] for k in id_converter['id'].keys()}
-    # colleges = {k for k in id_converter['names'].keys()}
-    # diff = colleges.difference(ids)
-    # print(len(diff))
-    return id_converter['id'][str(college_id)]
+    id_converter = json.loads(open(FILE_LINK,'r').read())['id']
+    return id_converter[str(college_id)]
 
-# get_college_from_id(101602)
-
-def get_info_from_college_name(college_name):
-    # for scalability/hosting on Apache server
+def get_id_from_college_name(college_name):
     FILE_DIR = os.path.dirname(__file__) or '.'
     FILE_DIR += '/../' # points to util, ../ to go back to Flask root
-
+    
     FILE_LINK = DIR + "data/college_data.json"
-
-    f = open(FILE_LINK, 'r').read()
-    college_data = json.loads(f)[college_name]
-    return college_data
+    
+    name_converter = json.loads(open(FILE_LINK,'r').read())['name']
+    return name_converter[str(college_name)]
