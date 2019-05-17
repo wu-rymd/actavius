@@ -8,10 +8,14 @@ Add a College
 <form class="row was-validated" method="POST" action="#">
   <div class="col"></div>
   <div class="col" style="max-width: 550px;">
-    <label class="h2">Add {{ name }} to List</label>
-    <label for="deadline" class="col-sm-2 col-form-label col-form-label-lg">Deadline</label>
-    <input class="form-control my-1" type="text" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
-    <button type="submit" name="submit" class="btn btn-outline-primary mb-2 my-1">Submit</button>
+    <label class="h2 text-center">Add {{ name }} to List</label>
+      <label for="deadline" class="text-center col-sm-1 col-form-label col-form-label-lg">Deadline:</label>
+      <div class="form-group">
+        <input class="form-control my-1" type="text" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+      </div>
+  <div class="text-center">
+      <button type="submit" name="submit" class="btn btn-outline-primary mb-2 my-1">Submit</button>
+  </div>
   </div>
   <div class="col"></div>
 </form>
