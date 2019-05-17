@@ -47,8 +47,11 @@ def get_college_from_id(college_id):
         
     FILE_LINK = DIR + "data/colleges.json"
     print(json.loads(open(FILE_LINK,'r').read()).keys())
-    id_converter = json.loads(open(FILE_LINK,'r').read())['id']
-    return id_converter[str(college_id)]
+    try:    
+        id_converter = json.loads(open(FILE_LINK,'r').read())['id']
+        return id_converter[str(college_id)]
+    except KeyError:
+        return False
 
 def get_id_from_college_name(college_name):
     FILE_DIR = os.path.dirname(__file__) or '.'

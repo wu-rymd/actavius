@@ -136,6 +136,9 @@ def college(college_id):
     if 'username' in session: loggedIn = True
     else: loggedIn = False
     college_name = colleges.get_college_from_id(college_id)
+    if not college_name: #returned False b/c KeyError -- malformed id
+        flash("Invalid college ID", "danger")
+        return redirect(url_for('index'))
     college_data = colleges.get_info_from_college_name(college_name)
     act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
     act_75 = college_data['ADM2017.ACT Composite 75th percentile score']
@@ -148,18 +151,33 @@ def college(college_id):
     admit = college_data['DRVIC2017.Tuition and fees, 2017-18']
     apply = college_data['ADM2017.Applicants total']
     print(college_name,act_25,act_75,sat_eng_25,sat_eng_75,sat_math_25,sat_math_75,grad_rate,tuition,admit,apply)
-    return render_template("college.html",name = college_name,
-                                          act_25 = act_25,
-                                          act_75 = act_75,
-                                          sat_eng_25 = sat_eng_25,
-                                          sat_eng_75 = sat_eng_75,
-                                          sat_math_25 = sat_math_25,
-                                          sat_math_75 = sat_math_75,
-                                          grad_rate = grad_rate,
-                                          tuition = tuition,
-                                          admit = admit,
-                                          apply = apply,
-                                          loggedIn = loggedIn)
+    if loggedIn:
+        return render_template("college.html",name = college_name,
+                               act_25 = act_25,
+                               act_75 = act_75,
+                               sat_eng_25 = sat_eng_25,
+                               sat_eng_75 = sat_eng_75,
+                               sat_math_25 = sat_math_25,
+                               sat_math_75 = sat_math_75,
+                               grad_rate = grad_rate,
+                               tuition = tuition,
+                               admit = admit,
+                               apply = apply,
+                               loggedIn = loggedIn,
+                               username = session['username'] )
+    else:
+        return render_template("college.html",name = college_name,
+                               act_25 = act_25,
+                               act_75 = act_75,
+                               sat_eng_25 = sat_eng_25,
+                               sat_eng_75 = sat_eng_75,
+                               sat_math_25 = sat_math_25,
+                               sat_math_75 = sat_math_75,
+                               grad_rate = grad_rate,
+                               tuition = tuition,
+                               admit = admit,
+                               apply = apply,
+                               loggedIn = loggedIn )
 
 @app.route("/add/<int:college_id>", methods=['GET','POST'])
 def add(college_id):
