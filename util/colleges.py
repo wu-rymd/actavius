@@ -10,11 +10,16 @@ DATABASE_LINK = DIR + "data/database.db"
 def add_colleges(college, deadline, submitted, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
+    data = c.execute("SELECT * FROM colleges;")
+    for row in data:
+        if college == row[1] and student_id == row[5]:
+            return False
     params = (college, deadline, submitted, student_id)
     command = "INSERT INTO colleges (name, deadline, submitted, student_id) VALUES (?, ?, ?, ?)"
     c.execute(command, params)
     db.commit()
     db.close()
+    return True
 
 def remove_colleges(college, student_id):
     db = sqlite3.connect(DATABASE_LINK)
@@ -24,6 +29,7 @@ def remove_colleges(college, student_id):
     c.execute(command, params)
     db.commit()
     db.close()
+    return True
 
 def get_student_colleges(student_id):
     db = sqlite3.connect(DATABASE_LINK)

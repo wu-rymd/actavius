@@ -98,3 +98,20 @@ jasonL -- 2019-05-16 13:11
 + Made look up for college name based on id
 + Passed data to college page based on college id
 ==============================================================
+
+rayO -- 2019-05-16 13:17
+--------------------------------------------------------------
++ Pushed college page with placeholder values and charts
+==============================================================
+
+tinaW -- 2019-05-17 01:15
+--------------------------------------------------------------
++ Connected add_colleges() to app
++ Added frontend form to allow user to add colleges
+- Frontend still needs more work for aesthetic purposes
+==============================================================
+
+raymond W -- 2019-05-17 06:25
+--------------------------------------------------------------
++ Added droplet to DigitalOcean @ 142.93.69.78
+==============================================================

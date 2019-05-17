@@ -159,6 +159,28 @@ def college(college_id):
                                           admit = admit,
                                           apply = apply)
 
+@app.route("/add/<int:college_id>", methods=['GET','POST'])
+def add(college_id):
+    if 'username' not in session:
+        flash("You must be logged in to view that page!", "danger")
+        return redirect(url_for('login'))
+    elif request.method == 'GET':
+        name = colleges.get_college_from_id(college_id)
+        return render_template('add.html', loggedIn=True, username=session['username'], name=name)
+    else: # POST method
+        deadline = request.form['deadline']
+        # submitted = request.form['submitted']
+        submitted = False
+        name = colleges.get_college_from_id(college_id)
+        student_id = database.get_id_from_username(session['username'])
+        # print(name, deadline, submitted, student_id)
+        if colleges.add_colleges(name, deadline, submitted, student_id):
+            flash("This college has been added to your list!", "success")
+            return redirect(url_for('index'))
+        else:
+            flash("You cannot add the same college twice!", "danger")
+            return redirect(url_for('add', college_id=college_id))
+
 if __name__ == "__main__":
     app.debug = True
     create_db.setup() #setup database
