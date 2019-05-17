@@ -4,7 +4,7 @@ import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from util import create_db, database, drafts, colleges
+from .util import create_db, database, drafts, colleges
 
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
@@ -133,9 +133,8 @@ def fin_aid():
 
 @app.route("/college/<int:college_id>")
 def college(college_id):
-    f = open('data/college_data.json','r').read()
     college_name = colleges.get_college_from_id(college_id)
-    college_data = json.loads(f)[college_name]
+    college_data = colleges.get_info_from_college_name(college_name)
     act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
     act_75 = college_data['ADM2017.ACT Composite 75th percentile score']
     sat_eng_25 = college_data['ADM2017.SAT Evidence-Based Reading and Writing 25th percentile score']
@@ -183,6 +182,7 @@ def add(college_id):
 
 if __name__ == "__main__":
     app.debug = True
+    print("creating the db")
     create_db.setup() #setup database
     app.run()
 

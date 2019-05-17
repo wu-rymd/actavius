@@ -42,7 +42,12 @@ def get_student_colleges(student_id):
     return data
 
 def get_college_from_id(college_id):
-    id_converter = json.loads(open('data/colleges.json','r').read())
+    FILE_DIR = os.path.dirname(__file__) or '.'
+    FILE_DIR += '/../' # points to util, ../ to go back to Flask root
+        
+    FILE_LINK = DIR + "data/college_data.json"
+
+    id_converter = json.loads(open(FILE_LINK,'r').read())
     # ids = {id_converter['id'][k] for k in id_converter['id'].keys()}
     # colleges = {k for k in id_converter['names'].keys()}
     # diff = colleges.difference(ids)
@@ -50,3 +55,14 @@ def get_college_from_id(college_id):
     return id_converter['id'][str(college_id)]
 
 # get_college_from_id(101602)
+
+def get_info_from_college_name(college_name):
+    # for scalability/hosting on Apache server
+    FILE_DIR = os.path.dirname(__file__) or '.'
+    FILE_DIR += '/../' # points to util, ../ to go back to Flask root
+
+    FILE_LINK = DIR + "data/college_data.json"
+
+    f = open(FILE_LINK, 'r').read()
+    college_data = json.loads(f)[college_name]
+    return college_data

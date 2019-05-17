@@ -14,12 +14,12 @@
     <div class="navbar navbar-light bg-light mb-3 fixed-top">
       <div class="navbar-brand mr-auto">
         <a class="navbar-brand" href="/">Actavius</a>
-      {% if loggedIn %}
+        {% if loggedIn %}
         <a class="btn btn-outline-primary mx-1" href="/search">College Search</a>
         <a class="btn btn-outline-primary mx-1" href="/fin_aid">Financial Aid</a>
         <a class="btn btn-outline-primary mx-1" href="/drafting">My drafts</a>
         {% endif %}  
-    </div>
+      </div>
       {% if not loggedIn %}
       <a class="btn btn-outline-primary mx-1" href="/login">Log in</a>
       <a class="btn btn-outline-secondary mx-1" href="/register">Register</a>
