@@ -8,15 +8,17 @@ Financial Aid
 {% block content %}
 <div class="container-fluid">
   <div class="card border-info mb-3">
-    <div class="card-header"><h3>College Name Goes Here</h3><div style="align:right;display:inline;">button</div></div>
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><button type="button" style="opacity:.85" class="btn btn-success">Add college</button>
+</div></div>
     <div class="card-body">
-      General Information
+      <h5>General Information</h5>
       <hr>
       <div class="row">
         <div class="col-md-4 center">
           <div class="card border-info mb-3">
             <div class="card-header"><strong>ACCEPTANCE RATE</strong></div>
             <div class="card-body">
+              <h5>
               <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
               <p class="card-text">Acceptance rate is the percentage of applicants who were admitted into the school. (placeholder above)</p>
             </div>
@@ -26,6 +28,7 @@ Financial Aid
           <div class="card border-info mb-3 center">
             <div class="card-header"><strong>GRADUATION RATE</strong></div>
             <div class="card-body">
+              <h5>{{grad_rate}}% (will put into a donut chart looking thing)</h5>
               <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
               <p class="card-text">Graduation rate is the percentage of students who graduated within 4 years. (placeholder above)</p>
             </div>
@@ -33,10 +36,32 @@ Financial Aid
         </div>
         <div class="col-md-4">
           <div class="card border-info mb-3">
-            <div class="card-header center"><strong>STANDARDIZED TESTING</strong></div>
+            <div class="card-header center"><strong>COST OF ATTENDANCE</strong></div>
             <div class="card-body">
-              <h5 class="card-title">Info card title</h5>
-              <p class="ca  rd-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <p class="card-text">${{tuition}} is the cost of tuition at {{name}} (reminder to make it look better)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h5>Standardized Testing</h5>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 center">
+          <div class="card border-info mb-3">
+            <div class="card-header"><strong>SAT SCORES</strong></div>
+            <div class="card-body">
+              <h5>
+              <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
+              <p class="card-text">put in sat score info later</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card border-info mb-3 center">
+            <div class="card-header"><strong>ACT SCORES</strong></div>
+            <div class="card-body">
+              <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
+              <p class="card-text">{{act_25}} 25th percentile & {{act_75}} 75th percentile</p>
             </div>
           </div>
         </div>
