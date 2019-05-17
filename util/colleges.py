@@ -36,11 +36,9 @@ def get_student_colleges(student_id):
     return data
 
 def get_college_from_id(college_id):
-    id_converter = json.loads(open('data/colleges.json','r').read())
-    # ids = {id_converter['id'][k] for k in id_converter['id'].keys()}
-    # colleges = {k for k in id_converter['names'].keys()}
-    # diff = colleges.difference(ids)
-    # print(len(diff))
-    return id_converter['id'][str(college_id)]
+    id_converter = json.loads(open('data/colleges.json','r').read())['id']
+    return id_converter[str(college_id)]
 
-# get_college_from_id(101602)
+def get_id_from_college_name(college_name):
+    name_converter = json.loads(open('data/colleges.json','r').read())['name']
+    return name_converter[str(college_name)]
