@@ -133,6 +133,8 @@ def fin_aid():
 
 @app.route("/college/<int:college_id>")
 def college(college_id):
+    if 'username' in session: loggedIn = True
+    else: loggedIn = False
     college_name = colleges.get_college_from_id(college_id)
     college_data = colleges.get_info_from_college_name(college_name)
     act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
@@ -157,7 +159,7 @@ def college(college_id):
                                           tuition = tuition,
                                           admit = admit,
                                           apply = apply,
-                                          loggedIn = is_logged_in)
+                                          loggedIn = loggedIn)
 
 @app.route("/add/<int:college_id>", methods=['GET','POST'])
 def add(college_id):
