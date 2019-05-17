@@ -133,6 +133,9 @@ def fin_aid():
 
 @app.route("/college/<int:college_id>")
 def college(college_id):
+    is_logged_in = False
+    if 'username' in session:
+        return is_logged_in = True
     f = open('data/college_data.json','r').read()
     college_name = colleges.get_college_from_id(college_id)
     college_data = json.loads(f)[college_name]
@@ -157,7 +160,8 @@ def college(college_id):
                                           grad_rate = grad_rate,
                                           tuition = tuition,
                                           admit = admit,
-                                          apply = apply)
+                                          apply = apply,
+                                          loggedIn = is_logged_in)
 
 @app.route("/add/<int:college_id>", methods=['GET','POST'])
 def add(college_id):
