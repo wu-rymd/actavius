@@ -103,3 +103,10 @@ rayO -- 2019-05-16 13:17
 --------------------------------------------------------------
 + Pushed college page with placeholder values and charts
 ==============================================================
+
+tinaW -- 2019-05-17 01:15
+--------------------------------------------------------------
++ Connected add_colleges() to app
++ Added frontend form to allow user to add colleges
+- Frontend still needs more work for aesthetic purposes
+==============================================================

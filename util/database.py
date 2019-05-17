@@ -44,3 +44,12 @@ def get_name_from_username(username):
     for row in data:
         return row[1]
     return False
+
+def get_id_from_username(username):
+    """This function returns the name of the user from the given username. Returns False if username not found, returns name otherwise."""
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    data = c.execute("SELECT * FROM students WHERE username=?", [username])
+    for row in data:
+        return row[0]
+    return False
