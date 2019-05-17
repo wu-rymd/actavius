@@ -110,3 +110,8 @@ tinaW -- 2019-05-17 01:15
 + Added frontend form to allow user to add colleges
 - Frontend still needs more work for aesthetic purposes
 ==============================================================
+
+raymond W -- 2019-05-17 06:25
+--------------------------------------------------------------
++ Added droplet to DigitalOcean @ 142.93.69.78
+==============================================================
