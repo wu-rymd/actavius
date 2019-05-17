@@ -135,7 +135,7 @@ def fin_aid():
 def college(college_id):
     is_logged_in = False
     if 'username' in session:
-        return is_logged_in = True
+        is_logged_in = True
     f = open('data/college_data.json','r').read()
     college_name = colleges.get_college_from_id(college_id)
     college_data = json.loads(f)[college_name]

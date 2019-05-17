@@ -35,7 +35,7 @@ def get_student_colleges(student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
     params = (student_id,)
-    command = "SELECT name, deadline, submitted, additional_info from colleges WHERE student_id =?"
+    command = "SELECT * from colleges WHERE student_id =?"
     c.execute(command,params)
     data = c.fetchall()
     db.close()
