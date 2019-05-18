@@ -124,6 +124,7 @@ rayO -- 2019-05-16 16:20
 tinaW -- 2019-05-18 14:28
 --------------------------------------------------------------
 + Put add/remove feature on the college page
++ Changed button on college page to show add or remove depending on user's college list
 + Changed frontend of the form to a modal style
 - Frontend still needs more work for aesthetic purposes
 ==============================================================
