@@ -1,15 +1,20 @@
 {% extends "base.html" %}
-{% block head %}
 {% block title %}
-Financial Aid
-{% endblock %}
+{{name}}
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
   <div class="card border-info mb-3">
-    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><button type="button" style="opacity:.85" class="btn btn-success">Add college</button>
-</div></div>
+    {% if loggedIn %}
+      {% if add %}
+      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><button type="button" style="opacity:.85" class="btn btn-success">Add college</button></div></div>
+      {% else %}
+      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><button type="button" style="opacity:.85" class="btn btn-success">Remove college</button></div></div>
+      {% endif %}
+    {% else %}
+      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div></div></div>
+    {% endif %}
     <div class="card-body">
       <h5>General Information</h5>
       <hr>

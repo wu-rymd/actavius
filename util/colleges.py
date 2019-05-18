@@ -44,10 +44,10 @@ def get_student_colleges(student_id):
 def get_college_from_id(college_id):
     FILE_DIR = os.path.dirname(__file__) or '.'
     FILE_DIR += '/../' # points to util, ../ to go back to Flask root
-        
+
     FILE_LINK = DIR + "data/colleges.json"
     print(json.loads(open(FILE_LINK,'r').read()).keys())
-    try:    
+    try:
         id_converter = json.loads(open(FILE_LINK,'r').read())['id']
         return id_converter[str(college_id)]
     except KeyError:
@@ -56,9 +56,9 @@ def get_college_from_id(college_id):
 def get_id_from_college_name(college_name):
     FILE_DIR = os.path.dirname(__file__) or '.'
     FILE_DIR += '/../' # points to util, ../ to go back to Flask root
-    
+
     FILE_LINK = DIR + "data/college_data.json"
-    
+
     name_converter = json.loads(open(FILE_LINK,'r').read())['name']
     return name_converter[str(college_name)]
 

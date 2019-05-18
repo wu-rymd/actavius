@@ -152,6 +152,13 @@ def college(college_id):
     apply = college_data['ADM2017.Applicants total']
     print(college_name,act_25,act_75,sat_eng_25,sat_eng_75,sat_math_25,sat_math_75,grad_rate,tuition,admit,apply)
     if loggedIn:
+        student_id = database.get_id_from_username(session['username'])
+        data = colleges.get_student_colleges(student_id)
+        add = True
+        for row in data:
+            if college_name == row[1]:
+                add = False
+                break
         return render_template("college.html",name = college_name,
                                act_25 = act_25,
                                act_75 = act_75,
@@ -164,7 +171,8 @@ def college(college_id):
                                admit = admit,
                                apply = apply,
                                loggedIn = loggedIn,
-                               username = session['username'] )
+                               username = session['username'],
+                               add = add)
     else:
         return render_template("college.html",name = college_name,
                                act_25 = act_25,
