@@ -10,7 +10,8 @@ DATABASE_LINK = DIR + "data/database.db"
 def add_colleges(college, deadline, submitted, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
-    data = c.execute("SELECT * FROM colleges;")
+    command = c.execute("SELECT * FROM colleges;")
+    data = c.fetchall()
     for row in data:
         if college == row[1] and student_id == row[5]:
             return False
@@ -25,9 +26,16 @@ def remove_colleges(college, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
     params = (student_id,repr(college))
-    command = "DELETE FROM colleges WHERE student_id = ? AND name = ?"
-    c.execute(command, params)
+    print(params)
+    command = "DELETE FROM colleges WHERE ( student_id = {} ) AND ( name = {} )".format(student_id,repr(college))
+    # c.execute(command, params)
+    c.execute(command)
     db.commit()
+    c.execute("SELECT * FROM colleges;")
+    data = c.fetchall()
+    for row in data:
+        if college == row[1] and student_id == row[5]:
+            return False
     db.close()
     return True
 

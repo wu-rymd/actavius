@@ -111,7 +111,7 @@ tinaW -- 2019-05-17 01:15
 - Frontend still needs more work for aesthetic purposes
 ==============================================================
 
-raymond W -- 2019-05-17 06:25
+raymondW -- 2019-05-17 06:25
 --------------------------------------------------------------
 + Added droplet to DigitalOcean @ 142.93.69.78
 ==============================================================
@@ -119,4 +119,11 @@ raymond W -- 2019-05-17 06:25
 rayO -- 2019-05-16 16:20
 --------------------------------------------------------------
 + Added two more sections to college page, will need to add charts for data later
+==============================================================
+
+tinaW -- 2019-05-18 14:28
+--------------------------------------------------------------
++ Put add/remove feature on the college page
++ Changed frontend of the form to a modal style
+- Frontend still needs more work for aesthetic purposes
 ==============================================================

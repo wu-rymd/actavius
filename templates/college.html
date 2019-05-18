@@ -8,12 +8,12 @@
   <div class="card border-info mb-3">
     {% if loggedIn %}
       {% if add %}
-      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><button type="button" style="opacity:.85" class="btn btn-success">Add college</button></div></div>
+      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-success" name="new-college" value="Add college" data-toggle="modal" data-target="#modal-add"></form></div></div>
       {% else %}
-      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><button type="button" style="opacity:.85" class="btn btn-success">Remove college</button></div></div>
+      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-danger" name="remove-college" value="Remove college" data-toggle="modal" data-target="#modal-remove"></form></div></div>
       {% endif %}
     {% else %}
-      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div></div></div>
+      <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div></div>
     {% endif %}
     <div class="card-body">
       <h5>General Information</h5>
@@ -70,6 +70,53 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><center><em>Add {{ name }} to your list</em></center</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="row was-validated" method="POST" action="#">
+        <div class="modal-body">
+              <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Application Deadline:</label>
+              <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+        </div>
+        <div class="modal-footer">
+          <input class="btn btn-success" type="submit" name="add" value="Add">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-remove" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><em>Are you absolutely sure?</em></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          You are about to remove <strong>{{ name }}</strong> from your list.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <form action="#" method="POST">
+          <input class="btn btn-danger" type="submit" name="delete" value="Remove">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </form>
       </div>
     </div>
   </div>
