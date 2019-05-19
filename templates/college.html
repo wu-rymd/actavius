@@ -1,47 +1,129 @@
 {% extends "base.html" %}
-{% block head %}
 {% block title %}
-Financial Aid
-{% endblock %}
+{{name}}
 {% endblock %}
 
 {% block content %}
+<script>
+  var graduation = {{grad_rate}}
+</script>
+
 <div class="container-fluid">
   <div class="card border-info mb-3">
-    <div class="card-header"><h3>College Name Goes Here</h3><div style="align:right;display:inline;">button</div></div>
+    {% if loggedIn %}
+    {% if add %}
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-success" name="new-college" value="Add college" data-toggle="modal" data-target="#modal-add"></form></div></div>
+    {% else %}
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-danger" name="remove-college" value="Remove college" data-toggle="modal" data-target="#modal-remove"></form></div></div>
+    {% endif %}
+    {% else %}
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div></div>
+    {% endif %}
     <div class="card-body">
-      General Information
+      <h5>General Information</h5>
       <hr>
       <div class="row">
         <div class="col-md-4 center">
           <div class="card border-info mb-3">
             <div class="card-header"><strong>ACCEPTANCE RATE</strong></div>
             <div class="card-body">
-              <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
-              <p class="card-text">Acceptance rate is the percentage of applicants who were admitted into the school. (placeholder above)</p>
+              <h5>
+                <div id="acceptance"></div>
+                <p class="card-text">Acceptance rate is the percentage of applicants who were admitted into the school. (placeholder above)</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-info mb-3 center">
+              <div class="card-header"><strong>GRADUATION RATE</strong></div>
+              <div class="card-body">
+                <div id="graduation"></div>
+                <p class="card-text">Graduation rate is the percentage of students who graduated within 4 years.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-info mb-3">
+              <div class="card-header center"><strong>COST OF ATTENDANCE</strong></div>
+              <div class="card-body">
+                <p class="card-text">${{tuition}} is the cost of tuition at {{name}} (reminder to make it look better)</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card border-info mb-3 center">
-            <div class="card-header"><strong>GRADUATION RATE</strong></div>
-            <div class="card-body">
-              <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
-              <p class="card-text">Graduation rate is the percentage of students who graduated within 4 years. (placeholder above)</p>
+        <h5>Standardized Testing</h5>
+        <hr>
+        <div class="row">
+          <div class="col-md-6 center">
+            <div class="card border-info mb-3">
+              <div class="card-header"><strong>SAT SCORES</strong></div>
+              <div class="card-body">
+                <h5>
+                  <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
+                  <p class="card-text">put in sat score info later</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-info mb-3">
-            <div class="card-header center"><strong>STANDARDIZED TESTING</strong></div>
-            <div class="card-body">
-              <h5 class="card-title">Info card title</h5>
-              <p class="ca  rd-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="col-md-6">
+              <div class="card border-info mb-3 center">
+                <div class="card-header"><strong>ACT SCORES</strong></div>
+                <div class="card-body">
+                  <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
+                  <p class="card-text">{{act_25}} 25th percentile & {{act_75}} 75th percentile</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-{% endblock %}
+
+    <div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><center><em>Add {{ name }} to your list</em></center</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form class="row was-validated" method="POST" action="#">
+              <div class="modal-body">
+                <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Application Deadline:</label>
+                <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+              </div>
+              <div class="modal-footer">
+                <input class="btn btn-success" type="submit" name="add" value="Add">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modal-remove" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><em>Are you absolutely sure?</em></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                You are about to remove <strong>{{ name }}</strong> from your list.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <form action="#" method="POST">
+                <input class="btn btn-danger" type="submit" name="delete" value="Remove">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="{{url_for('static',filename='college.js')}}"></script>
+      {% endblock %}

@@ -10,7 +10,8 @@ DATABASE_LINK = DIR + "data/database.db"
 def add_colleges(college, deadline, submitted, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
-    data = c.execute("SELECT * FROM colleges;")
+    command = c.execute("SELECT * FROM colleges;")
+    data = c.fetchall()
     for row in data:
         if college == row[1] and student_id == row[5]:
             return False
@@ -25,9 +26,16 @@ def remove_colleges(college, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
     params = (student_id,repr(college))
-    command = "DELETE FROM colleges WHERE student_id = ? AND name = ?"
-    c.execute(command, params)
+    print(params)
+    command = "DELETE FROM colleges WHERE ( student_id = {} ) AND ( name = {} )".format(student_id,repr(college))
+    # c.execute(command, params)
+    c.execute(command)
     db.commit()
+    c.execute("SELECT * FROM colleges;")
+    data = c.fetchall()
+    for row in data:
+        if college == row[1] and student_id == row[5]:
+            return False
     db.close()
     return True
 
@@ -42,9 +50,33 @@ def get_student_colleges(student_id):
     return data
 
 def get_college_from_id(college_id):
-    id_converter = json.loads(open('data/colleges.json','r').read())['id']
-    return id_converter[str(college_id)]
+    FILE_DIR = os.path.dirname(__file__) or '.'
+    FILE_DIR += '/../' # points to util, ../ to go back to Flask root
+
+    FILE_LINK = DIR + "data/colleges.json"
+    print(json.loads(open(FILE_LINK,'r').read()).keys())
+    try:
+        id_converter = json.loads(open(FILE_LINK,'r').read())['id']
+        return id_converter[str(college_id)]
+    except KeyError:
+        return False
 
 def get_id_from_college_name(college_name):
-    name_converter = json.loads(open('data/colleges.json','r').read())['name']
+    FILE_DIR = os.path.dirname(__file__) or '.'
+    FILE_DIR += '/../' # points to util, ../ to go back to Flask root
+
+    FILE_LINK = DIR + "data/college_data.json"
+
+    name_converter = json.loads(open(FILE_LINK,'r').read())['name']
     return name_converter[str(college_name)]
+
+def get_info_from_college_name(college_name):
+    # for scalability/hosting on Apache server
+    FILE_DIR = os.path.dirname(__file__) or '.'
+    FILE_DIR += '/../' # points to util, ../ to go back to Flask root
+
+    FILE_LINK = DIR + "data/college_data.json"
+
+    f = open(FILE_LINK, 'r').read()
+    college_data = json.loads(f)[college_name]
+    return college_data

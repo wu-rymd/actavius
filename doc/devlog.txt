@@ -111,7 +111,28 @@ tinaW -- 2019-05-17 01:15
 - Frontend still needs more work for aesthetic purposes
 ==============================================================
 
-raymond W -- 2019-05-17 06:25
+raymondW -- 2019-05-17 06:25
 --------------------------------------------------------------
 + Added droplet to DigitalOcean @ 142.93.69.78
+==============================================================
+
+rayO -- 2019-05-17 16:20
+--------------------------------------------------------------
++ Added two more sections to college page, will need to add charts for data later
+==============================================================
+
+tinaW -- 2019-05-18 14:28
+--------------------------------------------------------------
++ Put add/remove feature on the college page
++ Changed button on college page to show add or remove depending on user's college list
++ Changed frontend of the form to a modal style
+- Frontend still needs more work for aesthetic purposes
+==============================================================
+
+rayO -- 2019-05-18 21:33
+--------------------------------------------------------------
++ Added college.js which creates the donut charts on the college page
++ Redesigned navbar to be more clean and streamlined (less buttons)
++ Donut chart needs to be created for the other info sections
++ Centering of percentage of donut chart is slightly off
 ==============================================================
