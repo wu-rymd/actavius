@@ -49,6 +49,16 @@ def get_student_colleges(student_id):
     db.close()
     return data
 
+def get_college_from_database_id(college_id):
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    params = (college_id,)
+    command = "SELECT * from colleges WHERE id =?"
+    c.execute(command,params)
+    data = c.fetchone()
+    db.close()
+    return data
+
 def get_college_from_id(college_id):
     FILE_DIR = os.path.dirname(__file__) or '.'
     FILE_DIR += '/../' # points to util, ../ to go back to Flask root

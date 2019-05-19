@@ -8,6 +8,22 @@ Home Page
 
 {% if loggedIn %}
 <h3>Hi, {{ name }}!</h3>
+<h3>Here are your todos.</h3>
+<table border="1">
+    <tr>
+        <th>Task</th>
+        <th>Deadline</th>
+        <th>College</th>
+    </tr>
+    {% for todo in all_todos %}
+    <tr>
+        <td>{{todo['task']}}</td>
+        <td>{{todo['deadline']}}</td>
+        <td>{{todo['college_name']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 {% endif %}
 
 {% endblock %}

@@ -136,3 +136,9 @@ rayO -- 2019-05-18 21:33
 + Donut chart needs to be created for the other info sections
 + Centering of percentage of donut chart is slightly off
 ==============================================================
+
+jasonL -- 2019-05-19 11:07
+--------------------------------------------------------------
++ Display user's todos on the index page.
++ Created methods for getting a user's todos
+==============================================================

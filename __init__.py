@@ -4,7 +4,7 @@ import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from util import create_db, database, drafts, colleges, todo
+from util import create_db, database, drafts, colleges, todo, students
 
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
@@ -14,8 +14,9 @@ app.secret_key = urandom(32)
 @app.route("/")
 def index():
     if 'username' in session: #if logged in:
-        return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'])
-    todo.get_user_todos(1)
+        user_id = students.get_user_id_from_username(session['username'])
+        all_todos = todo.get_user_todos(user_id)
+        return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'], all_todos = all_todos)
     return render_template("index.html")
 
 @app.route("/register")
