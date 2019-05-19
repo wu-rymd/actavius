@@ -133,6 +133,11 @@ def fin_aid():
         return redirect(url_for('login'))
     return render_template('finaid.html', loggedIn=True, username=session['username'], name=session['name'])
 
+@app.route("/college-api")
+def api():
+    f = json.load(open("./data/college_data.json",'r'))
+    return jsonify(f)
+
 @app.route("/college/<int:college_id>", methods=['GET','POST'])
 def college(college_id):
     if 'username' in session: loggedIn = True
@@ -222,19 +227,3 @@ if __name__ == "__main__":
     print("creating the db")
     create_db.setup() #setup database
     app.run()
-
-
-# csv_names = ['admission.csv','faculty.csv','finaid.csv','graduate.csv','graduation.csv','race.csv','size.csv','statistics.csv','students.csv','test.csv','tuition.csv']
-# college_json = {}
-# for file in csv_names:
-#     f = csv.DictReader(open('./data/'+file,'r'))
-#     dict_list = []
-#     for line in f:
-#         dict_list.append(line)
-#     for college in dict_list:
-#         college_name = college["institution name"]
-#         if college_name not in college_json:
-#             college_json[college_name] = {}
-#         for key in college:
-#             if key != "institution name":
-#                 college_json[college_name][key] = college[key]
