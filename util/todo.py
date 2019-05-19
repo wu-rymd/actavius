@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-import colleges
+from util import colleges
 
 # for scalability/hosting on Apache server
 DIR = os.path.dirname(__file__) or '.'
@@ -19,10 +19,11 @@ def add_todo(task, deadline, completed, college_id):
     db.close()
 
 def get_user_todos(user_id):
+    '''Get all of the todos of the users based on their id'''
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
     user_colleges = colleges.get_student_colleges(user_id)
-    for
-    retDict = {'id':data[0], 'question':data[1], 'answer':data[2], 'college_id':data[3]}
+    for college in user_colleges:
+        print("hi")
     db.close()
-    return retDict
+    return "hi"
