@@ -1,5 +1,5 @@
 import sqlite3 #stdlib
-from os import urandom #stdlib
+import os #stdlib
 import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
@@ -9,7 +9,7 @@ from util import create_db, database, drafts, colleges, todo, students
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
 app = Flask(__name__)
-app.secret_key = urandom(32)
+app.secret_key = os.urandom(32)
 
 @app.route("/")
 def index():
@@ -135,8 +135,31 @@ def fin_aid():
 
 @app.route("/college-api")
 def api():
-    f = json.load(open("./data/college_data.json",'r'))
-    return jsonify(f)
+    DIR = os.path.dirname(__file__) or '.' # points to Flask root
+    JSON_LINK = DIR + "/data/colleges.json"
+    f = json.load(open(JSON_LINK,'r'))
+    query = request.args.get('query') # will not return KeyError if no query in URL
+    if not query: # if no parameter w/ key 'query' ... good for '' too!
+        return jsonify(f)
+    # reach here: query exists, build new JSON...
+    query_words = query.lower().split() #split by whitespace chars
+    if 'university' in query_words: query_words.remove('university')
+    if 'college' in query_words: query_words.remove('college')
+    print(query_words)
+    f.pop('id', None) #remove ID to college name conversion
+    search_matching_names = []
+    for name in f['college_names']:
+        for word in query_words:
+            if word in name.lower():
+                search_matching_names.append(name)
+                break
+    print(search_matching_names)
+    results_dict = { "college_names":[] , "id":{} , "names":{} }
+    for name in search_matching_names:
+        results_dict["college_names"].append(name)
+        results_dict["id"][ f["names"][name] ] = name
+        results_dict["names"][name] = f["names"][name]
+    return jsonify(results_dict)
 
 @app.route("/college/<int:college_id>", methods=['GET','POST'])
 def college(college_id):
