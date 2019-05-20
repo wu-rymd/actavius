@@ -163,3 +163,9 @@ rayO -- 2019-05-20 13:15
 + Donut chart is colored green and grey to make data easier to read
 + Also added scaling to the donut charts
 ==============================================================
+
+tinaW -- 2019-05-20 17:32
+--------------------------------------------------------------
++ Added front end of user profile page to show student's colleges
++ Hooked up removing colleges on front-end profile page with database
+==============================================================

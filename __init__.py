@@ -139,12 +139,30 @@ def search():
         return redirect(url_for('login'))
     return render_template('search.html', loggedIn=True, username=session['username'], name=session['name'])
 
-@app.route("/profile")
+@app.route("/profile", methods=['GET','POST'])
 def profile():
     if 'username' not in session:
         flash("You must be logged in to view that page!", "danger")
         return redirect(url_for('login'))
-    return render_template("profile.html", loggedIn=True, username=session['username'], name=session['name'])
+    elif request.method == 'GET':
+        student_id = database.get_id_from_username(session['username'])
+        data = colleges.get_student_colleges(student_id)
+        college_names = []
+        for college in data:
+            college_names.append((college[1], colleges.get_id_from_college_name(college[1])))
+        print(college_names)
+        return render_template("profile.html", loggedIn=True, username=session['username'], name=session['name'], all_colleges=college_names)
+    else: # POST method
+        delete_form = request.form.get('delete')
+        college_id = delete_form[delete_form.find(" ")+1:]
+        college_name = colleges.get_college_from_id(college_id)
+        student_id = database.get_id_from_username(session['username'])
+        if colleges.remove_colleges(college_name, student_id):
+            flash("This college has been removed from your list!", "success")
+            return redirect(url_for('profile'))
+        else:
+            flash("You cannot remove the same college twice!", "danger")
+            return redirect(url_for('profile'))
 
 @app.route("/fin_aid")
 def fin_aid():
