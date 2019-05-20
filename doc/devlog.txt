@@ -149,3 +149,10 @@ raymondW -- 2019-05-19 20:55
 + Added search functionality to site at /search
 + Fixed modal when adding college to saved list
 ==============================================================
+
+rayO -- 2019-05-20 13:15
+--------------------------------------------------------------
++ Added donut chart for acceptance rate
++ Animation for donut chart smooth instead of bounce
++ Donut chart is colored green and grey to make data easier to read
+==============================================================
