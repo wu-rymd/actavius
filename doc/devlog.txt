@@ -142,3 +142,9 @@ jasonL -- 2019-05-19 11:07
 + Display user's todos on the index page.
 + Created methods for getting a user's todos
 ==============================================================
+
+raymondW -- 2019-05-19 20:55
+--------------------------------------------------------------
++ Modified API at /college-api to show narrowed down results given search query
++ Added search functionality to site at /search
+==============================================================
