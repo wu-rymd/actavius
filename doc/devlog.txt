@@ -147,4 +147,5 @@ raymondW -- 2019-05-19 20:55
 --------------------------------------------------------------
 + Modified API at /college-api to show narrowed down results given search query
 + Added search functionality to site at /search
++ Fixed modal when adding college to saved list
 ==============================================================
