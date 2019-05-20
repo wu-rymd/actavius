@@ -155,4 +155,5 @@ rayO -- 2019-05-20 13:15
 + Added donut chart for acceptance rate
 + Animation for donut chart smooth instead of bounce
 + Donut chart is colored green and grey to make data easier to read
++ Also added scaling to the donut charts
 ==============================================================
