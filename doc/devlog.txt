@@ -148,9 +148,18 @@ raymondW -- 2019-05-19 20:55
 + Modified API at /college-api to show narrowed down results given search query
 + Added search functionality to site at /search
 + Fixed modal when adding college to saved list
+
 ==============================================================
 
 jasonL -- 2019-05-20 13:14
 --------------------------------------------------------------
 + Display deadlines for todos and colleges with them sorted.
+==============================================================
+
+rayO -- 2019-05-20 13:15
+--------------------------------------------------------------
++ Added donut chart for acceptance rate
++ Animation for donut chart smooth instead of bounce
++ Donut chart is colored green and grey to make data easier to read
++ Also added scaling to the donut charts
 ==============================================================

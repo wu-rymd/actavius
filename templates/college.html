@@ -5,7 +5,10 @@
 
 {% block content %}
 <script>
-  var graduation = {{grad_rate}}
+  var graduation = {{grad_rate}};
+  var admit = {{admit}};
+  var apply = {{apply}};
+  var acceptance = admit/apply
 </script>
 
 <div class="container-fluid">
@@ -23,7 +26,7 @@
       <h5>General Information</h5>
       <hr>
       <div class="row">
-        <div class="col-md-4 center">
+        <div class="col-lg-4 center">
           <div class="card border-info mb-3">
             <div class="card-header"><strong>ACCEPTANCE RATE</strong></div>
             <div class="card-body">
@@ -33,16 +36,16 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card border-info mb-3 center">
+          <div class="col-lg-4 center">
+            <div class="card border-info mb-3">
               <div class="card-header"><strong>GRADUATION RATE</strong></div>
-              <div class="card-body">
+              <div class="card-body" id="gradcontainer">
                 <div id="graduation"></div>
                 <p class="card-text">Graduation rate is the percentage of students who graduated within 4 years.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4">
             <div class="card border-info mb-3">
               <div class="card-header center"><strong>COST OF ATTENDANCE</strong></div>
               <div class="card-body">
