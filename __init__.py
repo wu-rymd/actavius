@@ -11,11 +11,27 @@ from util import create_db, database, drafts, colleges, todo, students
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
+def todo_key(a):
+    a = [int(x) for x in a['deadline'].split("-")]
+    return a[0]*10000 + a[1]*100 + a[2]
+
+
 @app.route("/")
 def index():
     if 'username' in session: #if logged in:
         user_id = students.get_user_id_from_username(session['username'])
         all_todos = todo.get_user_todos(user_id)
+        college_todo = colleges.get_student_colleges(user_id)
+        college_dict = []
+        for college in college_todo:
+            temp = {}
+            temp['id'] = college[0]
+            temp['college_name'] = college[1]
+            temp['deadline'] = college[2]
+            temp['task'] = "Application Deadline"
+            college_dict.append(temp)
+        all_todos += college_dict
+        all_todos.sort(key = todo_key)
         return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'], all_todos = all_todos)
     return render_template("index.html")
 

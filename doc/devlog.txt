@@ -149,3 +149,8 @@ raymondW -- 2019-05-19 20:55
 + Added search functionality to site at /search
 + Fixed modal when adding college to saved list
 ==============================================================
+
+jasonL -- 2019-05-20 13:14
+--------------------------------------------------------------
++ Display deadlines for todos and colleges with them sorted.
+==============================================================
