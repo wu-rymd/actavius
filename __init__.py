@@ -21,6 +21,8 @@ def index():
     if 'username' in session: #if logged in:
         user_id = students.get_user_id_from_username(session['username'])
         all_todos = todo.get_user_todos(user_id)
+        for a_todo in all_todos:
+            a_todo['unitid'] = colleges.get_id_from_college_name(a_todo['college_name'])
         college_todo = colleges.get_student_colleges(user_id)
         college_dict = []
         for college in college_todo:
@@ -28,10 +30,12 @@ def index():
             temp['id'] = college[0]
             temp['college_name'] = college[1]
             temp['deadline'] = college[2]
+            temp['unitid'] = colleges.get_id_from_college_name(college[1])
             temp['task'] = "Application Deadline"
             college_dict.append(temp)
         all_todos += college_dict
         all_todos.sort(key = todo_key)
+        print(all_todos)
         return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'], all_todos = all_todos)
     return render_template("index.html")
 

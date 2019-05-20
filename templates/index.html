@@ -19,7 +19,7 @@ Home Page
     <tr>
         <td>{{todo['task']}}</td>
         <td>{{todo['deadline']}}</td>
-        <td>{{todo['college_name']}}</td>
+        <td><a href="/college/{{todo['unitid']}}">{{todo['college_name']}}</a></td>
     </tr>
     {% endfor %}
 </table>

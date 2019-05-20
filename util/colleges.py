@@ -75,9 +75,9 @@ def get_id_from_college_name(college_name):
     FILE_DIR = os.path.dirname(__file__) or '.'
     FILE_DIR += '/../' # points to util, ../ to go back to Flask root
 
-    FILE_LINK = DIR + "data/college_data.json"
+    FILE_LINK = DIR + "data/colleges.json"
 
-    name_converter = json.loads(open(FILE_LINK,'r').read())['name']
+    name_converter = json.loads(open(FILE_LINK,'r').read())['names']
     return name_converter[str(college_name)]
 
 def get_info_from_college_name(college_name):
