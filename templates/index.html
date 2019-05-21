@@ -5,11 +5,20 @@
 Home Page
 {% endblock %}
 {% block content %}
-<h1>Welcome to Actavius</h1>
 
 {% if not loggedIn %}
-<h1 style="font-size: 100px;">TODO</h1>
-<h1 style="font-size: 100px;">But what this site do, tho?</h1>
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to Actavius</h1>
+    <p class="lead">Actvius is a web app designed to help you keep track of the college application process</p>
+    <hr class="my-4">
+    <p>You can search for colleges, learn relevant information about colleges, write your application essays, and manage all aspects of the process in this app.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/register" role="button">Get started!</a>
+    </p>
+  </div>
+</div>
+<img src="https://happycards.com/wp-content/uploads/2018/07/happy-student-1.jpg" bsty>
 {% endif %}
 
 {% if loggedIn %}

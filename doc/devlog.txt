@@ -194,3 +194,8 @@ jasonL -- 2019-05-21 13:01
 + Added button for adding todos. Functionality will be
 worked on later.
 ==============================================================
+
+rayO -- 2019-05-21 15:38
+--------------------------------------------------------------
++ Added info to the index page, could be more specific but basic features listed
+==============================================================
