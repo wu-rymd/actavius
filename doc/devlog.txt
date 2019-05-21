@@ -183,3 +183,8 @@ raymondW -- 2019-05-20 22:42
 + Updated project on DigitalOcean droplet for testing
 + Worked on "State of Affairs" document for tomorrow's check-in
 ==============================================================
+
+rayO -- 2019-05-21 13:01
+--------------------------------------------------------------
++ Fixed admit data in init
+==============================================================
