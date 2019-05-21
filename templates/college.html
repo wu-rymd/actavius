@@ -8,7 +8,9 @@
   var graduation = {{grad_rate}};
   var admit = {{admit}};
   var apply = {{apply}};
-  var acceptance = admit/apply
+  var acceptance = admit/apply;
+  var act = ( {{act_25}} + {{act_75}} ) / 2;
+  var sat = ({{sat_eng_25}} + {{sat_eng_75}} + {{sat_math_25}} + {{sat_math_75}}) / 2
 </script>
 
 <div class="container-fluid">
@@ -45,11 +47,12 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-4 center">
             <div class="card border-info mb-3">
-              <div class="card-header center"><strong>COST OF ATTENDANCE</strong></div>
+              <div class="card-header"><strong>COST OF ATTENDANCE</strong></div>
               <div class="card-body">
-                <p class="card-text">${{tuition}} is the cost of tuition at {{name}} (reminder to make it look better)</p>
+                <h1>${{tuition}}</h1>
+                <h5>(Average tuition)</h5>
               </div>
             </div>
           </div>
@@ -57,22 +60,21 @@
         <h5>Standardized Testing</h5>
         <hr>
         <div class="row">
-          <div class="col-md-6 center">
+          <div class="col-lg-6 center">
             <div class="card border-info mb-3">
               <div class="card-header"><strong>SAT SCORES</strong></div>
-              <div class="card-body">
-                <h5>
-                  <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
-                  <p class="card-text">put in sat score info later</p>
+                <div class="card-body">
+                  <h5 id="avgSAT"></h5>
+                  <div id="sat"></div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6">
               <div class="card border-info mb-3 center">
                 <div class="card-header"><strong>ACT SCORES</strong></div>
                 <div class="card-body">
-                  <img src="https://banner2.kisspng.com/20180420/zhq/kisspng-donuts-pie-chart-android-donut-creative-chart-5ad990a06947b7.3138264915242077764312.jpg" style="width:200px;hei">
-                  <p class="card-text">{{act_25}} 25th percentile & {{act_75}} 75th percentile</p>
+                  <h5 id="avgACT"></h5>
+                  <div id="act"><div>
                 </div>
               </div>
             </div>

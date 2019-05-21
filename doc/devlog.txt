@@ -169,3 +169,10 @@ tinaW -- 2019-05-20 17:32
 + Added front end of user profile page to show student's colleges
 + Hooked up removing colleges on front-end profile page with database
 ==============================================================
+
+rayO -- 2019-05-20 20:08
+--------------------------------------------------------------
++ Added bars to show SAT/ACT data
++ Changed donut colors to fit the style of the website better
++ Displaying tuition/cost information and score needs work
+==============================================================
