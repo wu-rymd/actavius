@@ -35,7 +35,6 @@ def index():
             college_dict.append(temp)
         all_todos += college_dict
         all_todos.sort(key = todo_key)
-        print(all_todos)
         return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'], all_todos = all_todos)
     return render_template("index.html")
 
