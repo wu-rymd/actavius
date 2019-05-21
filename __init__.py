@@ -195,6 +195,8 @@ def api():
     # reach here: query exists, build new JSON...
     query_words = query.lower().split() #split by whitespace chars
     if 'university' in query_words: query_words.remove('university')
+    if 'of' in query_words: query_words.remove('of')
+    if 'at' in query_words: query_words.remove('at')
     if 'college' in query_words: query_words.remove('college')
     print(query_words)
     f.pop('id', None) #remove ID to college name conversion
