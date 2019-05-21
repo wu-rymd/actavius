@@ -17,8 +17,21 @@ Drafts
   <input class="form-control" name="question" value="{{ content['question'] }}" placeholder="Question prompt">
   {% endif %}
 
-  <h3>(for college {{ content['college_id'] }})</h3>
-
+  <br>
+  
+  <div class="form-group">
+    <label>Associated with college:</label>
+    <select class="form-control" name="college-id">
+      {% for i in range(colleges|length) %}
+      {% if college_ids[i] == content["college_id"] %}
+      <option value="{{ college_ids[i] }}" selected="selected">{{ colleges[i][1] }}</option>
+      {% else %}
+      <option value="{{ college_ids[i] }}">{{ colleges[i][1] }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+  
   <br>
 
   <textarea class="form-control" rows="20" name="answer" placeholder="Your response">{{ content['answer'] }}</textarea>
@@ -28,4 +41,10 @@ Drafts
   <input class="btn btn-outline-primary btn-lg btn-block" type="submit" value="Save">
 
 </form>
+{% endblock %}
+
+{% block javascript %}
+<script>
+  
+</script>
 {% endblock %}

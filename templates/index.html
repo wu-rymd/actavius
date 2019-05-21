@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}
@@ -5,6 +6,11 @@ Home Page
 {% endblock %}
 {% block content %}
 <h1>Welcome to Actavius</h1>
+
+{% if not loggedIn %}
+<h1 style="font-size: 100px;">TODO</h1>
+<h1 style="font-size: 100px;">But what this site do, tho?</h1>
+{% endif %}
 
 {% if loggedIn %}
 <h3>Hi, {{ name }}!</h3>

@@ -9,7 +9,7 @@ from util import create_db, database, drafts, colleges, todo, students
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)
+app.secret_key = "my-super-secret-key-aAS89ayg98asfhigqeu8EGE" #static to solve logout bug
 
 def todo_key(a):
     a = [int(x) for x in a['deadline'].split("-")]
@@ -71,6 +71,12 @@ def drafts_all():
         return redirect(url_for('login'))
     elif request.method == 'GET':
         drafts_list = drafts.get_all_drafts(session['username'])
+        for draft in drafts_list:
+            college_id = draft['college']
+            college_name = colleges.get_college_from_id(college_id)
+            if not college_name:
+                college_name = ""
+            draft['college'] = college_name
         return render_template("drafts_list.html", drafts=drafts_list, loggedIn=True, username=session['username'], name=session['name'])
     else: #POST request
         new_draft_form = request.form.get('new-draft') #None if create new draft button not clicked (must be delete button)
@@ -96,11 +102,19 @@ def draft_existing(draft_id):
         if not content: #if returned False
             flash("Unauthorized access to draft!", "danger")
             return redirect(url_for('index'))
-        return render_template("draft_view.html", content=content, loggedIn=True, username=session['username'], name=session['name'])
+        #get colleges
+        my_student_id = database.get_id_from_username(session['username'])
+        my_colleges = colleges.get_student_colleges(my_student_id)
+        college_ids = []
+        for college in my_colleges:
+            college_ids.append( int(colleges.get_id_from_college_name(college[1])) )
+        return render_template("draft_view.html", content=content, loggedIn=True, username=session['username'], name=session['name'], colleges=my_colleges, college_ids=college_ids)
     else: #POST request
         question = request.form['question']
         answer = request.form['answer']
-        drafts.save(draft_id, question, answer)
+        college_id = request.form.get('college-id')
+        if not college_id: college_id = -1
+        drafts.save(draft_id, question, answer, college_id)
         flash("Your draft has been saved!", "success")
         return redirect(url_for('drafts_all'))
 

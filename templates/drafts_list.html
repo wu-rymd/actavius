@@ -28,7 +28,7 @@ Drafts
     {% for draft in drafts %}
     <tr>
       <th scope="row">{{ draft["id"] }}</th>
-      <td>{{ draft["college"] }}</td>
+      <td>{{ draft["college"] | truncate(30) }}</td>
       {% if draft["question"] == "(New draft)" %}
       <td><code>{{ draft["question"]  }}</code></td>
       {% else %}

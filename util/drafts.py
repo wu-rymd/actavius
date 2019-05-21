@@ -38,10 +38,10 @@ def get_draft(username,draft_id):
     db.close()
     return retDict
 
-def save(draft_id, question, answer):
+def save(draft_id, question, answer, college_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
-    command = c.execute("UPDATE questions SET question=? , answer=? WHERE id=?", [question, answer, draft_id])
+    command = c.execute("UPDATE questions SET question=? , answer=? , college_id=? WHERE id=?", [question, answer, college_id, draft_id])
     db.commit()
     db.close()
 
