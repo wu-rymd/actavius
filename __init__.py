@@ -230,7 +230,7 @@ def college(college_id):
         sat_math_75 = college_data['ADM2017.SAT Math 75th percentile score']
         grad_rate = college_data['DRVGR2017.Graduation rate, total cohort']
         tuition = college_data['DRVIC2017.Tuition and fees, 2017-18']
-        admit = college_data['DRVIC2017.Tuition and fees, 2017-18']
+        admit = college_data["ADM2017.Admissions total"]
         apply = college_data['ADM2017.Applicants total']
         print(college_name,act_25,act_75,sat_eng_25,sat_eng_75,sat_math_25,sat_math_75,grad_rate,tuition,admit,apply)
         if loggedIn:
