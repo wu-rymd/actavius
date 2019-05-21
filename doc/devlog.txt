@@ -148,7 +148,6 @@ raymondW -- 2019-05-19 20:55
 + Modified API at /college-api to show narrowed down results given search query
 + Added search functionality to site at /search
 + Fixed modal when adding college to saved list
-
 ==============================================================
 
 jasonL -- 2019-05-20 13:14
@@ -175,4 +174,12 @@ rayO -- 2019-05-20 20:08
 + Added bars to show SAT/ACT data
 + Changed donut colors to fit the style of the website better
 + Displaying tuition/cost information and score needs work
+==============================================================
+
+raymondW -- 2019-05-20 22:42
+--------------------------------------------------------------
++ Added ability to link a draft to a specific saved college
++ Fixed bug for users that have not saved colleges
++ Updated project on DigitalOcean droplet for testing
++ Worked on "State of Affairs" document for tomorrow's check-in
 ==============================================================
