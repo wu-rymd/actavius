@@ -15,6 +15,12 @@ Home Page
 {% if loggedIn %}
 <h3>Hi, {{ name }}!</h3>
 <h3>Here are your todos.</h3>
+<div style="float:right;">
+    <form action="#" method="POST" style="display:inline;">
+        <input type="button" style="opacity:.85" class="btn btn-success" name="new-todo" value="Add todo" data-toggle="modal" data-target="#modal-add">
+    </form>
+</div>
+
 <table border="1">
     <tr>
         <th>Task</th>
@@ -29,6 +35,33 @@ Home Page
     </tr>
     {% endfor %}
 </table>
+
+<div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><center><em>Add A Todo</em></center</h5>
+          <button type="button" class="close" style="float:right" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="was-validated" method="POST" action="#" style="padding: 15px;">
+          <div class="modal-body">
+            <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo </label>
+            <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
+            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo Deadline:</label>
+            <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo Deadline:</label>
+            <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+          </div>
+          <div class="modal-footer">
+            <input class="btn btn-success" type="submit" name="add" value="Add">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 {% endif %}
 
