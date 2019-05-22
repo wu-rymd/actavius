@@ -9,10 +9,10 @@ DIR += '/../' # points to util, ../ to go back to Flask root
 
 DATABASE_LINK = DIR + "data/database.db"
 
-def add_todo(task, deadline, completed, college_id):
+def add_todo(task, deadline, college_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
-    params = (task, deadline, completed, college_id)
+    params = (task, deadline, 0, college_id)
     command = "INSERT INTO extra_todo (task, deadline, completed, college_id) VALUES (?, ?, ?, ?)"
     c.execute(command, params)
     db.commit()

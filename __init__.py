@@ -16,14 +16,20 @@ def todo_key(a):
     return a[0]*10000 + a[1]*100 + a[2]
 
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def index():
     if 'username' in session: #if logged in:
+        if request.method == "POST":
+            college_id = request.form.get("college")
+            task = request.form.get("task")
+            deadline = request.form.get("deadline")
+            todo.add_todo(task,deadline,college_id)
         user_id = students.get_user_id_from_username(session['username'])
         all_todos = todo.get_user_todos(user_id)
         for a_todo in all_todos:
             a_todo['unitid'] = colleges.get_id_from_college_name(a_todo['college_name'])
         college_todo = colleges.get_student_colleges(user_id)
+        college_names = [[x[0],x[1]] for x in college_todo]
         college_dict = []
         for college in college_todo:
             temp = {}
@@ -35,7 +41,7 @@ def index():
             college_dict.append(temp)
         all_todos += college_dict
         all_todos.sort(key = todo_key)
-        return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'], all_todos = all_todos)
+        return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'], all_todos = all_todos, all_colleges=college_names)
     return render_template("index.html")
 
 @app.route("/register")

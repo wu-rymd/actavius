@@ -45,12 +45,17 @@ Home Page
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form class="was-validated" method="POST" action="#" style="padding: 15px;">
+        <form class="was-validated" method="POST" action="/" style="padding: 15px;">
           <div class="modal-body">
             <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo </label>
             <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
-            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo Deadline:</label>
-            <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
+            <select name="college">
+                <option value="all">All Colleges</option>
+                {% for college in all_colleges %}
+                    <option value="{{college[0]}}">{{college[1]}}</option>
+                {% endfor %}
+            </select>
             <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo Deadline:</label>
             <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
           </div>
