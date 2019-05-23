@@ -50,7 +50,7 @@ def setup():
     c.execute(command)
     command = "CREATE TABLE IF NOT EXISTS questions (id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT, answer TEXT, college_id INTEGER NOT NULL, user_id INTEGER NOT NULL)"
     c.execute(command)
-    command = "CREATE TABLE IF NOT EXISTS extra_todo (id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT NOT NULL, deadline TEXT NOT NULL, completed BOOLEAN NOT NULL, college_id INTEGER NOT NULL)"
+    command = "CREATE TABLE IF NOT EXISTS extra_todo (id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT NOT NULL, deadline TEXT NOT NULL, completed BOOLEAN NOT NULL, college_id INTEGER NOT NULL, student_id INTEGER NOT NULL)"
     c.execute(command)
     command = "CREATE TABLE IF NOT EXISTS finaids (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT NOT NULL, deadline TEXT NOT NULL, completed BOOLEAN NOT NULL, college_id INTEGER NOT NULL)"
     c.execute(command)
