@@ -230,6 +230,9 @@ def college(college_id):
         return redirect(url_for('index'))
     if request.method == 'GET':
         college_data = colleges.get_info_from_college_name(college_name)
+        if not college_data:
+            flash("Invalid college ID", "danger")
+            return redirect(url_for('index'))
         act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
         act_75 = college_data['ADM2017.ACT Composite 75th percentile score']
         sat_eng_25 = college_data['ADM2017.SAT Evidence-Based Reading and Writing 25th percentile score']
