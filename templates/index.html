@@ -48,23 +48,25 @@ Home Page
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><center><em>Add A Todo</em></center</h5>
-          <button type="button" class="close" style="float:right" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <h5 class="modal-title"><em>Add a To-do</em></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         </div>
         <form class="was-validated" method="POST" action="/" style="padding: 15px;">
           <div class="modal-body">
-            <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo </label>
+            <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do</label>
             <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
             <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
-            <select name="college">
-                <option value="all">All Colleges</option>
-                {% for college in all_colleges %}
-                    <option value="{{college[0]}}">{{college[1]}}</option>
-                {% endfor %}
-            </select>
-            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo Deadline:</label>
+            <div class="form-group" >
+              <select class="form-control" name="college">
+                  <option value="all">All Colleges</option>
+                  {% for college in all_colleges %}
+                      <option value="{{college[0]}}">{{college[1]}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
             <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
           </div>
           <div class="modal-footer">
