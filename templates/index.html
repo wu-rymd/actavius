@@ -62,25 +62,15 @@ Home Page
             <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do</label>
             <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
             <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
-<<<<<<< HEAD
-            <select name="college">
-                <option value="-1">All Colleges</option>
-                {% for college in all_colleges %}
-                    <option value="{{college[0]}}">{{college[1]}}</option>
-                {% endfor %}
-            </select>
-            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Todo Deadline:</label>
-=======
             <div class="form-group" >
               <select class="form-control" name="college">
-                  <option value="all">All Colleges</option>
+                  <option value="-1">All Colleges</option>
                   {% for college in all_colleges %}
                       <option value="{{college[0]}}">{{college[1]}}</option>
                   {% endfor %}
               </select>
             </div>
             <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
->>>>>>> 4f9fecef65af69505696d45802000e86a8a6afac
             <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
           </div>
           <div class="modal-footer">
