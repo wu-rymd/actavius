@@ -236,6 +236,9 @@ def college(college_id):
         if not college_data:
             flash("Invalid college ID", "danger")
             return redirect(url_for('index'))
+        for key in college_data:
+            if college_data[key] == "":
+                flash("There is not enough data in our database for this college!", "warning")
         act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
         act_75 = college_data['ADM2017.ACT Composite 75th percentile score']
         sat_eng_25 = college_data['ADM2017.SAT Evidence-Based Reading and Writing 25th percentile score']
