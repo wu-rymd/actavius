@@ -88,5 +88,8 @@ def get_info_from_college_name(college_name):
     FILE_LINK = DIR + "data/college_data.json"
 
     f = open(FILE_LINK, 'r').read()
-    college_data = json.loads(f)[college_name]
-    return college_data
+    try:
+        college_data = json.loads(f)[college_name]
+        return college_data
+    except KeyError:
+        return False
