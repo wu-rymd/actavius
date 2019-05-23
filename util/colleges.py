@@ -92,4 +92,4 @@ def get_info_from_college_name(college_name):
         college_data = json.loads(f)[college_name]
         return college_data
     except KeyError:
-        return false
+        return False
