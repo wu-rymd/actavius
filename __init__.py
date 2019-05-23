@@ -241,9 +241,9 @@ def college(college_id):
         for key in college_data:
             if college_data[key] == "":
                 counter += 1
-        # print(counter)
-        # print(len(shown_keys))
-        if counter == 10:
+        print(counter)
+        print(len(shown_keys))
+        if counter >= 15:
             flash("There is not enough data in our database for this college!", "warning")
         act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
         act_75 = college_data['ADM2017.ACT Composite 75th percentile score']
