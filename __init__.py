@@ -19,15 +19,18 @@ def todo_key(a):
 @app.route("/", methods=["GET","POST"])
 def index():
     if 'username' in session: #if logged in:
+        user_id = students.get_user_id_from_username(session['username'])
         if request.method == "POST":
             college_id = request.form.get("college")
             task = request.form.get("task")
             deadline = request.form.get("deadline")
-            todo.add_todo(task,deadline,college_id)
-        user_id = students.get_user_id_from_username(session['username'])
+            todo.add_todo(task,deadline,college_id,user_id)
         all_todos = todo.get_user_todos(user_id)
         for a_todo in all_todos:
-            a_todo['unitid'] = colleges.get_id_from_college_name(a_todo['college_name'])
+            if a_todo["college_name"] == "All Colleges":
+                a_todo['unitid'] = -1
+            else:
+                a_todo['unitid'] = colleges.get_id_from_college_name(a_todo['college_name'])
         college_todo = colleges.get_student_colleges(user_id)
         college_names = [[x[0],x[1]] for x in college_todo]
         college_dict = []
