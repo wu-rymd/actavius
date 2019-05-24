@@ -44,3 +44,13 @@ def get_user_todos(user_id):
         all_todos.append(todo_dict)
     db.close()
     return all_todos
+
+def delete_todo(todo_id):
+    '''delete a specific todo'''
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    params = (todo_id,)
+    command = "DELETE FROM extra_todo WHERE id = ?"
+    data = c.execute(command,params)
+    db.commit()
+    db.close()

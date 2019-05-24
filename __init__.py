@@ -21,12 +21,18 @@ def index():
     if 'username' in session: #if logged in:
         user_id = students.get_user_id_from_username(session['username'])
         if request.method == "POST":
-            college_id = request.form.get("college")
-            task = request.form.get("task")
-            deadline = request.form.get("deadline")
-            todo.add_todo(task,deadline,college_id,user_id)
+            if request.form.get("college"):
+                college_id = request.form.get("college")
+                task = request.form.get("task")
+                deadline = request.form.get("deadline")
+                todo.add_todo(task,deadline,college_id,user_id)
+            else:
+                delete_this = request.form.get("delete")
+                if delete_this.count("delete_todo") > 0:
+                    todo.delete_todo(int(delete_this.split("delete_todo")[1]))
         all_todos = todo.get_user_todos(user_id)
         for a_todo in all_todos:
+            a_todo['is_todo'] = True
             if a_todo["college_name"] == "All Colleges":
                 a_todo['unitid'] = -1
             else:
@@ -41,6 +47,7 @@ def index():
             temp['deadline'] = college[2]
             temp['unitid'] = colleges.get_id_from_college_name(college[1])
             temp['task'] = "Application Deadline"
+            temp['is_todo'] = False
             college_dict.append(temp)
         all_todos += college_dict
         all_todos.sort(key = todo_key)
