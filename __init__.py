@@ -243,6 +243,15 @@ def college(college_id):
         if not college_data:
             flash("Invalid college ID", "danger")
             return redirect(url_for('index'))
+        shown_keys = ['ADM2017.ACT Composite 25th percentile score', 'ADM2017.ACT Composite 75th percentile score', 'ADM2017.SAT Evidence-Based Reading and Writing 25th percentile score', 'ADM2017.SAT Evidence-Based Reading and Writing 75th percentile score', 'ADM2017.SAT Math 25th percentile score', 'ADM2017.SAT Math 75th percentile score', 'DRVGR2017.Graduation rate, total cohort', 'DRVIC2017.Tuition and fees, 2017-18', "ADM2017.Admissions total", 'ADM2017.Applicants total']
+        counter = 0
+        for key in college_data:
+            if college_data[key] == "":
+                counter += 1
+        print(counter)
+        print(len(shown_keys))
+        if counter >= 15:
+            flash("There is not enough data in our database for this college!", "warning")
         act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
         act_75 = college_data['ADM2017.ACT Composite 75th percentile score']
         sat_eng_25 = college_data['ADM2017.SAT Evidence-Based Reading and Writing 25th percentile score']
