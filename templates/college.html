@@ -34,7 +34,7 @@
             <div class="card-body">
               <h5>
                 <div id="acceptance"></div>
-                <p class="card-text">Acceptance rate is the percentage of applicants who were admitted into the school. (placeholder above)</p>
+                <p class="lead">Acceptance rate is the percentage of applicants who were admitted into the school.</p>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
               <div class="card-header"><strong>GRADUATION RATE</strong></div>
               <div class="card-body" id="gradcontainer">
                 <div id="graduation"></div>
-                <p class="card-text">Graduation rate is the percentage of students who graduated within 4 years.</p>
+                <p class="lead">Graduation rate is the percentage of students who graduated within 4 years.</p>
               </div>
             </div>
           </div>
@@ -51,8 +51,8 @@
             <div class="card border-info mb-3">
               <div class="card-header"><strong>COST OF ATTENDANCE</strong></div>
               <div class="card-body">
-                <h1>${{tuition}}</h1>
-                <h5>(Average tuition)</h5>
+                <h1 class="display-4">${{tuition}}</h1>
+                <p class="lead">(Average tuition)</p>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
             <div class="card border-info mb-3">
               <div class="card-header"><strong>SAT SCORES</strong></div>
                 <div class="card-body">
-                  <h5 id="avgSAT"></h5>
+                  <p class="lead" id="avgSAT"></p>
                   <div id="sat"></div>
                 </div>
               </div>
@@ -73,7 +73,7 @@
               <div class="card border-info mb-3 center">
                 <div class="card-header"><strong>ACT SCORES</strong></div>
                 <div class="card-body">
-                  <h5 id="avgACT"></h5>
+                  <p class="lead" id="avgACT"></p>
                   <div id="act"><div>
                 </div>
               </div>
@@ -81,6 +81,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 
     <div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
