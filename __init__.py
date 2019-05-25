@@ -263,6 +263,9 @@ def college(college_id):
         admit = college_data["ADM2017.Admissions total"]
         apply = college_data['ADM2017.Applicants total']
         print(college_name,act_25,act_75,sat_eng_25,sat_eng_75,sat_math_25,sat_math_75,grad_rate,tuition,admit,apply)
+        tuition = str(tuition)
+        if len(tuition) > 0:
+            tuition = tuition[:-3] + ',' + tuition[-3:]
         if loggedIn:
             student_id = database.get_id_from_username(session['username'])
             data = colleges.get_student_colleges(student_id)
