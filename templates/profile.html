@@ -26,13 +26,13 @@ Profile
       </div>
       <div class="modal-body">
         <p>
-          You are about to remove <strong>{{ college[0] }}</strong> from your list.<br>
+          You are about to remove <strong>{{ college[0] }}</strong> from your list.<br><br>
           <b>This action is irreversible.</b>
         </p>
       </div>
       <div class="modal-footer">
         <form action="" method="POST">
-          <input class="btn btn-danger" type="submit" name="delete" value="Remove {{ college [1]}}">
+          <button class="btn btn-danger" type="submit" name="delete" value="Remove {{ college [1]}}">Remove college</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </form>
       </div>
