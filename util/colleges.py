@@ -26,7 +26,6 @@ def remove_colleges(college, student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
     params = (student_id,repr(college))
-    print(params)
     command = "DELETE FROM colleges WHERE ( student_id = {} ) AND ( name = {} )".format(student_id,repr(college))
     # c.execute(command, params)
     c.execute(command)
@@ -93,3 +92,12 @@ def get_info_from_college_name(college_name):
         return college_data
     except KeyError:
         return False
+
+def edit_deadline(college_id,deadline):
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    params = (deadline,college_id)
+    command = "UPDATE colleges SET deadline = ? WHERE id = ?"
+    c.execute(command, params)
+    db.commit()
+    db.close()

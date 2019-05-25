@@ -26,6 +26,10 @@ def index():
                 task = request.form.get("task")
                 deadline = request.form.get("deadline")
                 todo.add_todo(task,deadline,college_id,user_id)
+            elif request.form.get("college_edit"):
+                college_id = request.form.get("college_edit")
+                new_deadline = request.form.get("deadline")
+                colleges.edit_deadline(college_id,new_deadline)
             else:
                 delete_this = request.form.get("delete")
                 if delete_this.count("delete_todo") > 0:
@@ -38,7 +42,7 @@ def index():
             else:
                 a_todo['unitid'] = colleges.get_id_from_college_name(a_todo['college_name'])
         college_todo = colleges.get_student_colleges(user_id)
-        college_names = [[x[0],x[1]] for x in college_todo]
+        college_names = [[x[0],x[1],x[2]] for x in college_todo]
         college_dict = []
         for college in college_todo:
             temp = {}

@@ -60,67 +60,62 @@ Home Page
 
 <div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><em>Add a To-do</em></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-        <form class="was-validated" method="POST" action="/" style="padding: 15px;">
-            <div class="modal-body">
-              <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do</label>
-            <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
-            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
-            <div class="form-group" >
-                <select class="form-control" name="college">
-                  <option value="-1">All Colleges</option>
-                  {% for college in all_colleges %}
-                  <option value="{{college[0]}}">{{college[1]}}</option>
-                      {% endfor %}
-              </select>
-          </div>
-            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
-            <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><em>Add a To-do</em></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="was-validated" method="POST" action="/" style="padding: 15px;">
+                <div class="modal-body">
+                    <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do</label>
+                    <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
+                    <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
+                    <div class="form-group" >
+                        <select class="form-control" name="college">
+                            <option value="-1">All Colleges</option>
+                            {% for college in all_colleges %}
+                            <option value="{{college[0]}}">{{college[1]}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
+                    <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-success" type="submit" name="add" value="Add">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div>
-          <div class="modal-footer">
-              <input class="btn btn-success" type="submit" name="add" value="Add">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          </div>
-      </form>
-  </div>
+    </div>
 </div>
 
 {% for college in all_colleges %}
 <div class="modal fade" id="modal-edit{{college[0]}}" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><em>Add a To-do</em></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-        <form class="was-validated" method="POST" action="/" style="padding: 15px;">
-            <div class="modal-body">
-              <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do</label>
-            <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
-            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
-            
-            <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
-            <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><em>Edit College Deadline</em></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="was-validated" method="POST" action="/" style="padding: 15px;">
+                <div class="modal-body">
+                    <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
+                    <input class="form-control my-1" type="date" name="deadline" value="{{college[2]}}" autofocus required>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="submit" name="college_edit" value="{{college[0]}}">Edit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div>
-          <div class="modal-footer">
-              <input class="btn btn-success" type="submit" name="add" value="Add">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          </div>
-      </form>
-  </div>
+    </div>
 </div>
 {% endfor %}
-
-</div>
-
 {% endif %}
 
 {% endblock %}
