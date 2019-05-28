@@ -240,6 +240,8 @@ def college(college_id):
     if 'username' in session: loggedIn = True
     else: loggedIn = False
     college_name = colleges.get_college_from_id(college_id)
+    print(colleges.get_finaid_from_college_name(college_name))
+
     if not college_name: #returned False b/c KeyError -- malformed id
         flash("Invalid college ID", "danger")
         return redirect(url_for('index'))
@@ -253,8 +255,6 @@ def college(college_id):
         for key in college_data:
             if college_data[key] == "":
                 counter += 1
-        print(counter)
-        print(len(shown_keys))
         if counter >= 15:
             flash("There is not enough data in our database for this college!", "warning")
         act_25 = college_data['ADM2017.ACT Composite 25th percentile score']
@@ -267,7 +267,6 @@ def college(college_id):
         tuition = college_data['DRVIC2017.Tuition and fees, 2017-18']
         admit = college_data["ADM2017.Admissions total"]
         apply = college_data['ADM2017.Applicants total']
-        print(college_name,act_25,act_75,sat_eng_25,sat_eng_75,sat_math_25,sat_math_75,grad_rate,tuition,admit,apply)
         tuition = str(tuition)
         if len(tuition) > 0:
             tuition = tuition[:-3] + ',' + tuition[-3:]

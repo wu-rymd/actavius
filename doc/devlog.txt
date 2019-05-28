@@ -230,6 +230,11 @@ jasonL -- 2019-05-25 08:36
 + Added college deadline editing
 ==============================================================
 
+jasonL -- 2019-05-28 13:05
+--------------------------------------------------------------
++ Util for getting college financial aid info
+==============================================================
+
 tinaW -- 2019-05-28 13:06
 --------------------------------------------------------------
 + Fixed bug with removing college from profile page and removing todos pertaining to a college on the index page

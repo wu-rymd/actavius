@@ -7,13 +7,15 @@ Home Page
 {% block content %}
 
 {% if not loggedIn %}
+<img id="bg-img" src="/static/vessel-unblur-photo.JPG"></img>
 <div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">Welcome to Actavius</h1>
-    <p class="lead">Actvius is a web app designed to help you keep track of the college application process</p>
+  <div class="jumbotron" style="opacity: 1; background-color: rgba(180,180,180,0); color: white; text-shadow: 0.7px 0.7px 0.7px black;">
+    <h1 class="display-3"><b>Welcome to Actavius</b></h1><br>
+    <p class="jumbo-text">Actavius is a web app designed to help you keep track of the college application process</p>
     <hr class="my-4">
-    <p>You can search for colleges, learn relevant information about colleges, write your application essays, and manage all aspects of the process in this app.</p>
+    <p class="jumbo-text">You can search for colleges, learn relevant information about colleges, write your application essays, and manage all aspects of the process in this app.</p>
     <p class="lead">
+      <br>
       <a class="btn btn-primary btn-lg" href="/register" role="button">Get started!</a>
     </p>
   </div>
@@ -118,4 +120,26 @@ Home Page
 {% endfor %}
 {% endif %}
 
+{% endblock %}
+
+{% block style %}
+<style>
+    #bg-img {
+        height: 100vh;
+        position: absolute;
+        left: -100px;
+        top: 0;
+        z-index: -9999;
+    }
+    img {
+        filter: blur(5px);
+    }
+    #footer {
+        color: lightgray;
+    }
+    .jumbo-text{
+        font-size: 170%;
+        font-weight: 300;
+    }
+</style>
 {% endblock %}
