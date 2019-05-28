@@ -191,6 +191,7 @@ def profile():
         college_name = colleges.get_college_from_id(college_id)
         student_id = database.get_id_from_username(session['username'])
         if colleges.remove_colleges(college_name, student_id):
+            todo.delete_college_todo(college_id)
             flash("This college has been removed from your list!", "success")
             return redirect(url_for('profile'))
         else:
