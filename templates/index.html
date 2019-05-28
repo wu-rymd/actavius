@@ -9,14 +9,14 @@ Home Page
 {% if not loggedIn %}
 <img id="bg-img" src="/static/vessel-unblur-photo.JPG"></img>
 <div class="container">
-  <div class="jumbotron" style="opacity: 1; background-color: rgba(180,180,180,0); color: white; text-shadow: 0.7px 0.7px 0.7px black;">
+  <div class="jumbotron " style="opacity: 1; background-color: rgba(180,180,180,0); color: white; text-shadow: 0.7px 0.7px 0.7px black;">
     <h1 class="display-3"><b>Welcome to Actavius</b></h1><br>
     <p class="jumbo-text">Actavius is a web app designed to help you keep track of the college application process</p>
     <hr class="my-4">
     <p class="jumbo-text">You can search for colleges, learn relevant information about colleges, write your application essays, and manage all aspects of the process in this app.</p>
     <p class="lead">
       <br>
-      <a class="btn btn-primary btn-lg" href="/register" role="button">Get started!</a>
+      <a class="btn btn-primary btn-lg" style="padding-left: 30px; padding-right: 30px;" href="/register" role="button">Get started!</a>
     </p>
   </div>
 </div>
@@ -127,12 +127,19 @@ Home Page
     #bg-img {
         height: 100vh;
         position: absolute;
-        left: -100px;
         top: 0;
+        left: 0;
         z-index: -9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
     }
     img {
         filter: blur(5px);
+        flex-shrink: 0;
+        min-width: 100%;
+        object-fit: cover;
     }
     #footer {
         color: lightgray;
