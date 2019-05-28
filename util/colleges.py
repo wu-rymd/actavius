@@ -93,6 +93,17 @@ def get_info_from_college_name(college_name):
     except KeyError:
         return False
 
+def get_finaid_from_college_name(college_name):
+    college_data = get_info_from_college_name(college_name)
+    output = {}
+    output['unitid'] = college_data['unitid']
+    output['avg_grant_aid'] = college_data['SFA1617.Average amount of federal, state, local or institutional grant aid awarded']
+    output['avg_federal_grant'] = college_data['SFA1617.Average amount of federal grant aid awarded to full-time first-time undergraduates']
+    output['avg_pell_grant'] = college_data['SFA1617.Average amount of Pell grant aid awarded to full-time first-time undergraduates']
+    output['avg_institutional_grant'] = college_data['SFA1617.Average amount of institutional grant aid awarded to full-time first-time undergraduates']
+    output['avg_student_loan'] = college_data['SFA1617.Average amount of student loans awarded to full-time first-time undergraduates']
+    return output
+
 def edit_deadline(college_id,deadline):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
