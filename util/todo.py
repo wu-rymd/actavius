@@ -19,7 +19,7 @@ def add_todo(task, deadline, college_id,student_id):
     db.close()
 
 def get_college_todos(college_id):
-    '''Get all fo the todos from a specific college that is linked to a user'''
+    '''Get all of the todos from a specific college that is linked to a user'''
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()
     params = (college_id,)
@@ -54,3 +54,13 @@ def delete_todo(todo_id):
     data = c.execute(command,params)
     db.commit()
     db.close()
+
+def delete_college_todo(college_id):
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    params = (college_id,)
+    command = "DELETE FROM extra_todo WHERE college_id = ?"
+    data = c.execute(command,params)
+    db.commit()
+    db.close()
+    return True
