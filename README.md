@@ -211,3 +211,5 @@ sudo tail /var/log/apache2/error.log -f
 ```
 sudo tail /var/log/apache2/access.log -f
 ```
+
+* Credits to [https://github.com/tofr/](Mr. Brown) for the original how-to guide on deploying a persistent Flask app on DigitalOcean
