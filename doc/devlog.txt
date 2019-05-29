@@ -250,3 +250,9 @@ raymondW -- 2019-05-29 07:00
 + Expanded on launch instructions for localhost on README
 + Added DigitalOcean droplet/Apache2 launch instructions to README
 ==============================================================
+
+rayO -- 2019-05-29 12:22
+--------------------------------------------------------------
++ Fixed scaling of bar for scores on college page
++ Button to google search university works, needs to be styled
+==============================================================
