@@ -95,6 +95,8 @@ def get_info_from_college_name(college_name):
 
 def get_finaid_from_college_name(college_name):
     college_data = get_info_from_college_name(college_name)
+    if not college_data:
+        return False
     output = {}
     output['unitid'] = college_data['unitid']
     output['avg_grant_aid'] = college_data['SFA1617.Average amount of federal, state, local or institutional grant aid awarded']

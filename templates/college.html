@@ -5,6 +5,7 @@
 
 {% block content %}
 <script>
+  var name = "{{name}}"
   var graduation = {{grad_rate}};
   var admit = {{admit}};
   var apply = {{apply}};
@@ -82,6 +83,7 @@
         </div>
       </div>
     </div>
+    <button id="search">b</button>
     </div>
 
     <div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">

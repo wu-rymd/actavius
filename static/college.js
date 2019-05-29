@@ -15,8 +15,17 @@ var act_rate = [act_data]
 var sat_data = sat/1600
 var sat_rate = [sat_data]
 
-document.getElementById("avgSAT").innerHTML = "The average SAT score is " + sat;
-document.getElementById("avgACT").innerHTML = "The average ACT score is " + Math.round(act);
+document.getElementById('search').onclick = function() {
+    window.open('http://google.com/search?q='+name);
+};
+
+document.getElementById("avgSAT").innerHTML = "The average SAT score is " + sat + " out of 1600";
+document.getElementById("avgACT").innerHTML = "The average ACT score is " + Math.round(act) + " out of 36";
+
+var q = name;
+document.getElementById('search').onclick = function() {
+    window.open('http://google.com/search?q='+q);
+};
 
 var arc = d3.arc().innerRadius(radius-35)
 .outerRadius(radius)
@@ -71,9 +80,9 @@ drawPie(acc_rate,"#acceptance");
 var scoreBar = function(data,id){
   svg = d3.select(id)
     .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", "0 0 500 300")
+    .attr("width", "90%")
+    .attr("height", "40%")
+    .attr("viewBox", "0 0 500 200")
     .attr("transform", "translate(" + 0 + "," + height / 4 + ")");
 
   bar = svg.selectAll("g")
