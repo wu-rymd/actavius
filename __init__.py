@@ -240,10 +240,9 @@ def college(college_id):
     if 'username' in session: loggedIn = True
     else: loggedIn = False
     college_name = colleges.get_college_from_id(college_id)
-    print(colleges.get_finaid_from_college_name(college_name))
 
     if not college_name: #returned False b/c KeyError -- malformed id
-        flash("Invalid college ID", "danger")
+        flash("Our database has no information on this college.", "danger")
         return redirect(url_for('index'))
     if request.method == 'GET':
         college_data = colleges.get_info_from_college_name(college_name)
