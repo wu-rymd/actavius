@@ -14,28 +14,6 @@ Actavius combines all of the services that a student uses to keep track of their
 
 ## Launch Instructions
 ### Install and run on localhost
-1. First, clone this repository:
-```
-$ git clone https://github.com/raywu6/Wong-Ray-Down-a-One-Lin-Street.git
-```
-2. Next, change your directory to go into your local copy of the repository:
-```
-$ cd Wong-Ray-Down-a-One-Lin-Street
-```
-3. Activate your virtual environment. If you do not have one set up, you may create one in the current working directory, and activate it like so:
-```
-$ python3 -m venv venv
-$ . venv/bin/activate
-```
-4. Run the following command to install all the packages needed for the data visualization to display on the Flask server:
-```
-(venv) $ pip install -r requirements.txt
-```
-5. Now, activate your virtual environment and run the python file to start the Flask server:
-```
-(venv) $ python3 __init__.py
-```
-6. Visit the website at [http://localhost:5000/](http://localhost:5000/)
 
 Most of our dependencies can be installed through simple pip command listed below, however, you will need Python 3 and SQLite3 on your system which must be installed. Python 3 is the programming language used to run the application while sqlite3 is used to maintain our databases. Both of these are essential. If, in your terminal, running `$ python3` invokes the Python 3 interpreter, and running `$ sqlite3` opens the SQLite3 shell, you are good to go. If not, please follow the links below.
 * [Install sqlite3](https://mislav.net/rails/install-sqlite3/ "Install sqlite3")
@@ -116,7 +94,7 @@ First, create a DigitalOcean droplet running ubuntu v18.04 x64.
 $ sudo apt update
 $ sudo apt upgrade
 $ sudo apt install emacs
-$ sudo -H apt install libapache2-mod-wsgi-py3 
+$ sudo -H apt install libapache2-mod-wsgi-py3
 $ sudo apt install python3-pip
 ```
 
@@ -209,7 +187,12 @@ $ sudo tail /var/log/apache2/error.log -f
 ```
   * All requests, updated in real time:
 ```
+<<<<<<< HEAD
 $ sudo tail /var/log/apache2/access.log -f
 ```
 
 * Credits to [https://github.com/tofr/](Mr. Brown) for the original how-to guide on deploying a persistent Flask app on DigitalOcean
+=======
+sudo tail /var/log/apache2/access.log -f
+```
+>>>>>>> f691b510e7a5e1ad63aab7c7999d87d88cdb5cc6
