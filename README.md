@@ -33,7 +33,7 @@ $ . venv/bin/activate
 ```
 5. Now, activate your virtual environment and run the python file to start the Flask server:
 ```
-(venv) $ python3 app.py
+(venv) $ python3 __init__.py
 ```
 6. Visit the website at [http://localhost:5000/](http://localhost:5000/)
 
