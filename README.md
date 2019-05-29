@@ -14,5 +14,29 @@ Actavius combines all of the services that a student uses to keep track of their
 
 ## Launch Instructions
 ### Install and run on localhost
+1. First, clone this repository:
+```
+$ git clone https://github.com/raywu6/Wong-Ray-Down-a-One-Lin-Street.git
+```
+2. Next, change your directory to go into your local copy of the repository:
+```
+$ cd Wong-Ray-Down-a-One-Lin-Street
+```
+3. Activate your virtual environment. If you do not have one set up, you may create one in the current working directory, and activate it like so:
+```
+$ python3 -m venv venv
+$ . venv/bin/activate
+```
+4. Run the following command to install all the packages needed for the data visualization to display on the Flask server:
+```
+(venv) $ pip install -r requirements.txt
+```
+5. Now, activate your virtual environment and run the python file to start the Flask server:
+```
+(venv) $ python3 app.py
+```
+6. Visit the website at [http://localhost:5000/](http://localhost:5000/)
 
 ### Install and run on Apache2
+
+Visit the website at [http://142.93.69.78/](http://142.93.69.78/)
