@@ -14,7 +14,6 @@ Actavius combines all of the services that a student uses to keep track of their
 
 ## Launch Instructions
 ### Install and run on localhost
-
 Most of our dependencies can be installed through simple pip command listed below, however, you will need Python 3 and SQLite3 on your system which must be installed. Python 3 is the programming language used to run the application while sqlite3 is used to maintain our databases. Both of these are essential. If, in your terminal, running `$ python3` invokes the Python 3 interpreter, and running `$ sqlite3` opens the SQLite3 shell, you are good to go. If not, please follow the links below.
 * [Install sqlite3](https://mislav.net/rails/install-sqlite3/ "Install sqlite3")
 * [Install python3](https://realpython.com/installing-python/ "Install python3")
@@ -187,12 +186,8 @@ $ sudo tail /var/log/apache2/error.log -f
 ```
   * All requests, updated in real time:
 ```
-<<<<<<< HEAD
 $ sudo tail /var/log/apache2/access.log -f
 ```
 
-* Credits to [https://github.com/tofr/](Mr. Brown) for the original how-to guide on deploying a persistent Flask app on DigitalOcean
-=======
-sudo tail /var/log/apache2/access.log -f
-```
->>>>>>> f691b510e7a5e1ad63aab7c7999d87d88cdb5cc6
+*Credits to [Mr. Brown](https://github.com/tofr) for the original how-to guide on deploying a persistent Flask app on DigitalOcean*
+
