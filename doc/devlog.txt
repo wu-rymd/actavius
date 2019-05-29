@@ -239,3 +239,14 @@ tinaW -- 2019-05-28 13:06
 --------------------------------------------------------------
 + Fixed bug with removing college from profile page and removing todos pertaining to a college on the index page
 ==============================================================
+
+tinaW -- 2019-05-29 00:21
+--------------------------------------------------------------
++ Added launch codes to README
+==============================================================
+
+raymondW -- 2019-05-29 07:00
+--------------------------------------------------------------
++ Expanded on launch instructions for localhost on README
++ Added DigitalOcean droplet/Apache2 launch instructions to README
+==============================================================
