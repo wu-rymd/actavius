@@ -20,7 +20,7 @@ Most of our dependencies can be installed through simple pip command listed belo
 
 First, clone this repository:
 ```
-$ git clone https://github.com/raywu6/Wong-Ray-Down-a-One-Lin-Street.git
+$ git clone https://github.com/raywu6/actavius.git
 ```
 Activate your virtual environment. If you do not have one set up, you may create one in the current working directory, and activate it like so:
 ```
@@ -30,7 +30,7 @@ $ . dc/bin/activate
 
 Next, change your directory to go into your local copy of the repository:
 ```
-(dc)$ cd Wong-Ray-Down-a-One-Lin-Street
+(dc)$ cd actavius
 ```
 Now, install all of the requirements needed to run this project. This command simply installs jinja and Flask. Flask is the python framework used to allow for simpler software development. Jinja is used to connect front end HTML/CSS code to back-end Python Flask code.
 
@@ -190,4 +190,3 @@ $ sudo tail /var/log/apache2/access.log -f
 ```
 
 *Credits to [Mr. Brown](https://github.com/tofr) for the original how-to guide on deploying a persistent Flask app on DigitalOcean*
-
