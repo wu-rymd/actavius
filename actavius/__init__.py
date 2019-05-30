@@ -268,6 +268,13 @@ def college(college_id):
         admit = college_data["ADM2017.Admissions total"]
         apply = college_data['ADM2017.Applicants total']
         tuition = str(tuition)
+        print(finaid_data)
+        for key in finaid_data.keys():
+            try:
+                x = int(finaid_data[key])
+                finaid_data[key] = finaid_data[key][:-3] + ',' + finaid_data[key][-3:]
+            except:
+                continue
         if len(tuition) > 0:
             tuition = tuition[:-3] + ',' + tuition[-3:]
         if loggedIn:
