@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-from util import colleges
+from . import colleges
 
 # for scalability/hosting on Apache server
 DIR = os.path.dirname(__file__) or '.'
