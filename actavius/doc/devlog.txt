@@ -256,3 +256,8 @@ rayO -- 2019-05-29 12:22
 + Fixed scaling of bar for scores on college page
 + Button to google search university works, needs to be styled
 ==============================================================
+
+tinaW -- 2019-05-29 17:32
+--------------------------------------------------------------
++ Updated launch codes to README
+==============================================================
