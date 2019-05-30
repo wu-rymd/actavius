@@ -246,6 +246,7 @@ def college(college_id):
         return redirect(url_for('index'))
     if request.method == 'GET':
         college_data = colleges.get_info_from_college_name(college_name)
+        finaid_data = colleges.get_finaid_from_college_name(college_name)
         if not college_data:
             flash("Invalid college ID", "danger")
             return redirect(url_for('index'))
@@ -290,6 +291,7 @@ def college(college_id):
                                    apply = apply,
                                    loggedIn = loggedIn,
                                    username = session['username'],
+                                   finaid = finaid_data,
                                    add = add)
         else:
             return render_template("college.html",name = college_name,
@@ -303,6 +305,7 @@ def college(college_id):
                                    tuition = tuition,
                                    admit = admit,
                                    apply = apply,
+                                   finaid = finaid_data,
                                    loggedIn = loggedIn )
     else: #POST request
         student_id = database.get_id_from_username(session['username'])
