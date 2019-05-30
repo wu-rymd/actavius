@@ -205,6 +205,11 @@ jasonL -- 2019-05-21 13:01
 + Todos can now be added
 ==============================================================
 
+raymondW -- 2019-05-21 13:11
+--------------------------------------------------------------
++ Added fxnality to remove common words from search query, refine searches
+==============================================================
+
 tinaW -- 2019-05-23 13:09
 --------------------------------------------------------------
 + Changed layout of index and todo modal
@@ -215,9 +220,22 @@ jasonL -- 2019-05-23 13:11
 + Fixed bug with all college todos not showing up
 ==============================================================
 
+raymondW -- 2019-05-23 13:17
+--------------------------------------------------------------
++ Fixed front-end bug with malformed college name being passed into fxn in util/
++ Added fallback for KeyError in case of malformed college name in util/
++ Added flash if csv/json data does not have sufficient data points for a college
+==============================================================
+
 jasonL -- 2019-05-24 09:57
 --------------------------------------------------------------
 + Todos can now be deleted
+==============================================================
+
+raymondW -- 2019-05-24 13:11
+--------------------------------------------------------------
++ Use buttons instead of inputs to avoid showing ID on UI
++ Fix tuition layout on college pages
 ==============================================================
 
 rayO -- 2019-05-24 13:17
@@ -240,6 +258,12 @@ tinaW -- 2019-05-28 13:06
 + Fixed bug with removing college from profile page and removing todos pertaining to a college on the index page
 ==============================================================
 
+raymondW -- 2019-05-28 16:12
+--------------------------------------------------------------
++ Fixed styling on splash page
++ Changed link name for logged in dropdown for saved colleges
+==============================================================
+
 tinaW -- 2019-05-29 00:21
 --------------------------------------------------------------
 + Added launch codes to README
@@ -260,4 +284,12 @@ rayO -- 2019-05-29 12:22
 tinaW -- 2019-05-29 17:32
 --------------------------------------------------------------
 + Updated launch codes to README
+==============================================================
+
+raymondW -- 2019-05-29 23:34
+--------------------------------------------------------------
++ Fixed README to have more concise instructions re: DigitalOcean droplet setup
++ Fixed file structure for apache2 setup
++ Added blank database.db file (if not, when created by __init__.py, file will not have proper permissions)
++ Added lower resolution image for splash page to load faster
 ==============================================================
