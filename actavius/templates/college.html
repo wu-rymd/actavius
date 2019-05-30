@@ -18,9 +18,9 @@
   <div class="card border-info mb-3">
     {% if loggedIn %}
     {% if add %}
-    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-success" name="new-college" value="Add college" data-toggle="modal" data-target="#modal-add"></form></div></div>
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-success" name="new-college" value="Add college" data-toggle="modal" data-target="#modal-add"></form> <button id="search" class="btn btn-info">More info</button></div></div>
     {% else %}
-    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-danger" name="remove-college" value="Remove college" data-toggle="modal" data-target="#modal-remove"></form></div></div>
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-danger" name="remove-college" value="Remove college" data-toggle="modal" data-target="#modal-remove"></form> <button id="search" class="btn btn-info">More info</button></div></div>
     {% endif %}
     {% else %}
     <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div></div>
@@ -33,7 +33,6 @@
           <div class="card border-info mb-3">
             <div class="card-header"><strong>ACCEPTANCE RATE</strong></div>
             <div class="card-body">
-              <h5>
                 <div id="acceptance"></div>
                 <p class="lead">Acceptance rate is the percentage of applicants who were admitted into the school.</p>
               </div>
@@ -127,7 +126,6 @@
           </div>
       </div>
     </div>
-    <button id="search">b</button>
     </div>
 
     <div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
@@ -135,6 +133,9 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title"><center><em>Add {{ name }} to your list</em></center</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <form class="was-validated" method="POST" action="#" style="padding: 15px;">
               <div class="modal-body">
@@ -155,6 +156,9 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title"><em>Are you absolutely sure?</em></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body">
               <p>

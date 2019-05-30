@@ -36,8 +36,6 @@ var pie = d3.pie();
 var drawPie = function(data,id){
   var svg = d3.select(id).append("svg")
     .datum(data)
-    .attr("width", "100%")
-    .attr("height", "100%")
     .attr("viewBox", "0 0 480 250")
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");

@@ -298,3 +298,9 @@ raymondW -- 2019-05-29 23:34
 + Added blank database.db file (if not, when created by __init__.py, file will not have proper permissions)
 + Added lower resolution image for splash page to load faster
 ==============================================================
+
+rayO -- 2019-05-30 13:31
+--------------------------------------------------------------
++ Google search button feature fully done
++ Fix spacing issues and issues with white space
+==============================================================
