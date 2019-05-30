@@ -69,8 +69,7 @@ $ sudo -H apt install libapache2-mod-wsgi-py3
 $ sudo apt install python3-pip
 ```
 
-* Change the directory to the root directory of your new account
-```$ cd```
+* Change the directory to the root directory of your new account: ```$ cd```
 
 * Clone this repository into your root directory
 ```
@@ -96,31 +95,29 @@ $ sudo cd /var/www
 ```
 
 * Put `.conf` file in web serving config folder
-  * ```$ sudo mv /var/www/actavius/actavius.conf /etc/apache2/sites-available```
+```
+$ sudo mv /var/www/actavius/actavius.conf /etc/apache2/sites-available
+```
 
 * Install apache2
-  * ```$ sudo apt install apache2```
+ ```
+ $ sudo apt install apache2
+ ```
 
 * Enable apache2
-  * ```$ sudo a2ensite actavius```
+```
+$ sudo a2ensite actavius
+```
 
 * Enable WSGI module
-  * ```$ sudo a2enmod wsgi```
+```
+$ sudo a2enmod wsgi
+```
 
 * Reload and restart apache2
 ```
 $ sudo service apache2 reload
 $ sudo service apache2 restart
-```
-
-* Use the following debugging tools if necessary:
-  * Errors, updated in real time:
-```
-$ sudo tail /var/log/apache2/error.log -f
-```
-  * All requests, updated in real time:
-```
-$ sudo tail /var/log/apache2/access.log -f
 ```
 
 *Credits to [Mr. Brown](https://github.com/tofr) for the original how-to guide on deploying a persistent Flask app on DigitalOcean*
