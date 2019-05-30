@@ -1,0 +1,16 @@
+.center{
+  text-align:center;
+}
+
+.itemSpacing {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.linkSize{
+  font-size:18px;
+}
+
+.btnSpace{
+  padding: 1px 7px 1px 7px
+}

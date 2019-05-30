@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}
+Drafts
+{% endblock %}
+
+{% block content %}
+<div>
+  <span class="h1" style="vertical-align: bottom;">Drafts</span>
+  &nbsp;&nbsp;&nbsp;
+  <form action="#" method="POST" style="display:inline;">
+    <input class="btn btn-outline-success btn-lg" type="submit" name="new-draft" value="Create new draft">
+  </form>
+</div>
+
+<br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">College</th>
+      <th scope="col">Question</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for draft in drafts %}
+    <tr>
+      <th scope="row">{{ draft["id"] }}</th>
+      <td>{{ draft["college"] | truncate(30) }}</td>
+      {% if draft["question"] == "(New draft)" %}
+      <td><code>{{ draft["question"]  }}</code></td>
+      {% else %}
+      <td>{{ draft["question"] | truncate(50) }}</td>
+      {% endif %}
+      <td>
+        <a class="btn btn-outline-primary" href="/drafting/{{ draft['id'] }}">Edit</a>
+        <button class="btn btn-outline-danger" data-toggle="modal" data-target="#modal-{{draft['id']}}">Delete</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% for draft in drafts %}
+<div class="modal fade" id="modal-{{draft['id']}}" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><em>Are you absolutely sure?</em></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          You are about to delete draft ID {{draft["id"]}}.<br><br>
+          {% if draft["question"] == "" %}
+          The question field of this draft is <code>(empty)</code>. <br><br>
+          {% else %}
+          The question field of this draft is <code>{{ draft["question"] | truncate(50) }}</code>. <br><br>
+          {% endif %}
+          {% if draft["answer"] == "" %}
+          The answer field of this draft is <code>(empty)</code>. <br><br>
+          {% else %}
+          The answer field of this draft is <code>{{ draft["answer"] | truncate(100) }}</code>. <br><br>
+          {% endif %}
+          <b>Are you sure you want to delete this draft?</b><br>
+          <b>This action is irreversible.</b>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <form action="#" method="POST">
+          <button type="sumbit" class="btn btn-danger" name="delete" value="Confirm delete ID {{draft['id']}}">Confirm delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+<h1> Search </h1>
+
+<input id="search-box" class="form-control w-75" style="display:inline;" name="search-bar" placeholder="Search for college by name here">
+<button id="search-button" class="btn btn-outline-primary" style="vertical-align: top;">Search</button>
+
+<br><br>
+
+<div id="results" class="card" style="padding: 15px;"> Use the search bar above to return results!
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+  var resultsBox = document.getElementById("results");
+  var getData = (searchQuery) => {
+      var promise = new Promise( function(resolve,reject) {
+	  $.get( "/college-api", {"query":searchQuery} )
+	      .done( function(response) { resolve(response); })
+	      .fail( function() { reject(); });
+      });
+      promise.then( function(result) {
+	  resultsBox.innerHTML = ""; //clear search container
+	  console.log(result);
+	  if (result['college_names'].length == 0) {
+	      resultsBox.innerHTML = "No results could be found.";
+	      return;
+	  }
+	  for (var i = 0 ; i<result['college_names'].length ; i++) {
+	      var outerDiv = document.createElement('div');
+	      outerDiv.className = 'card';
+	      var innerDiv = document.createElement('div');
+	      innerDiv.className = "card-body";
+	      var collegeName = result['college_names'][i];
+	      var id = result['names'][collegeName];
+	      var h2 = document.createElement('h2');
+	      h2.innerHTML = collegeName;
+	      h2.style.cssFloat = 'left';
+	      var a = document.createElement('a');
+	      a.className = "btn btn-outline-secondary";
+	      a.style.cssFloat = 'right';
+	      a.href = "/college/"+id;
+	      a.innerHTML = "See more";
+	      innerDiv.appendChild(h2);
+	      innerDiv.appendChild(a);
+	      outerDiv.appendChild(innerDiv);
+	      resultsBox.appendChild(outerDiv);
+	  }
+      }, function(err) {
+	  console.log(err);
+      });
+  }
+  var searchBox = document.getElementById("search-box");
+  var searchButton = document.getElementById("search-button");
+  searchBox.addEventListener("keyup", function(e) {
+      if (e.keyCode == 13) { //Enter key
+	  e.preventDefault();
+	  searchButton.click(); //click
+      }
+  });
+  var buttonClick = () => {
+      var searchQuery = searchBox.value;
+      if (searchQuery == "") {
+	  searchBox.innerHTML = "Use the search bar above to return results!";
+	  return;
+      }
+      console.log("searching for", searchQuery);
+
+      resultsBox.innerHTML = "Loading...";
+      getData(searchQuery);
+  }
+
+  var searchButton = document.getElementById("search-button");
+  searchButton.addEventListener('click', buttonClick );
+</script>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block title %}
+{{name}}
+{% endblock %}
+
+{% block content %}
+<script>
+  var name = "{{name}}"
+  var graduation = {{grad_rate}};
+  var admit = {{admit}};
+  var apply = {{apply}};
+  var acceptance = admit/apply;
+  var act = ( {{act_25}} + {{act_75}} ) / 2;
+  var sat = ({{sat_eng_25}} + {{sat_eng_75}} + {{sat_math_25}} + {{sat_math_75}}) / 2
+</script>
+
+<div class="container-fluid">
+  <div class="card border-info mb-3">
+    {% if loggedIn %}
+    {% if add %}
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-success" name="new-college" value="Add college" data-toggle="modal" data-target="#modal-add"></form></div></div>
+    {% else %}
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div><div style="float:right;"><form action="#" method="POST" style="display:inline;"><input type="button" style="opacity:.85" class="btn btn-danger" name="remove-college" value="Remove college" data-toggle="modal" data-target="#modal-remove"></form></div></div>
+    {% endif %}
+    {% else %}
+    <div class="card-header"><div style="float:left;"><h3>{{name}}</h3></div></div>
+    {% endif %}
+    <div class="card-body">
+      <h5>General Information</h5>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4 center">
+          <div class="card border-info mb-3">
+            <div class="card-header"><strong>ACCEPTANCE RATE</strong></div>
+            <div class="card-body">
+              <h5>
+                <div id="acceptance"></div>
+                <p class="lead">Acceptance rate is the percentage of applicants who were admitted into the school.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 center">
+            <div class="card border-info mb-3">
+              <div class="card-header"><strong>GRADUATION RATE</strong></div>
+              <div class="card-body" id="gradcontainer">
+                <div id="graduation"></div>
+                <p class="lead">Graduation rate is the percentage of students who graduated within 4 years.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 center">
+            <div class="card border-info mb-3">
+              <div class="card-header"><strong>COST OF ATTENDANCE</strong></div>
+              <div class="card-body">
+                <h1 class="display-4">${{tuition}}</h1>
+                <p class="lead">(Average tuition)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5>Standardized Testing</h5>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6 center">
+            <div class="card border-info mb-3">
+              <div class="card-header"><strong>SAT SCORES</strong></div>
+                <div class="card-body">
+                  <p class="lead" id="avgSAT"></p>
+                  <div id="sat"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card border-info mb-3 center">
+                <div class="card-header"><strong>ACT SCORES</strong></div>
+                <div class="card-body">
+                  <p class="lead" id="avgACT"></p>
+                  <div id="act"><div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h5>Financial Aid Information</h5>
+      <hr>
+      <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="card border-info mb-3">
+                <div class="card-header"><b></b></div>
+                  <div class="card-body">
+                    <p class="lead" id="avgSAT"></p>
+                    <div id="sat"></div>
+                  </div>
+                </div>
+          </div>
+      </div>
+    </div>
+    <button id="search">b</button>
+    </div>
+
+    <div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><center><em>Add {{ name }} to your list</em></center</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form class="was-validated" method="POST" action="#" style="padding: 15px;">
+              <div class="modal-body">
+                <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">Application Deadline:</label>
+                <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
+              </div>
+              <div class="modal-footer">
+                <input class="btn btn-success" type="submit" name="add" value="Add">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modal-remove" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><em>Are you absolutely sure?</em></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                You are about to remove <strong>{{ name }}</strong> from your list.<br><br>
+                This will also delete any to-dos associated with this college on your dashboard.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <form action="#" method="POST">
+                <input class="btn btn-danger" type="submit" name="delete" value="Remove">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="{{url_for('static',filename='college.js')}}"></script>
+      {% endblock %}
