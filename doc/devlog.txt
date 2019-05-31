@@ -304,3 +304,9 @@ rayO -- 2019-05-30 13:31
 + Google search button feature fully done
 + Fix spacing issues and issues with white space
 ==============================================================
+
+rayO -- 2019-05-30 13:09
+--------------------------------------------------------------
++ Added slight gradient to background of website
++ Navbar is now transparent, needs to become solid when scrolling down
+==============================================================

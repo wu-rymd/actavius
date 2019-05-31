@@ -14,3 +14,7 @@
 .btnSpace{
   padding: 1px 7px 1px 7px
 }
+
+body{
+ background-image: linear-gradient(to left top, #e8f5ff, #f0f7ff, #f6f9ff, #fbfcff, #ffffff);
+}
