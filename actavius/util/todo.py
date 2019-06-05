@@ -64,3 +64,12 @@ def delete_college_todo(college_id):
     db.commit()
     db.close()
     return True
+
+def toggle_complete(todo_id,status):
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    params = (status,todo_id)
+    command = "UPDATE extra_todo SET completed = ? WHERE id = ?"
+    c.execute(command, params)
+    db.commit()
+    db.close()

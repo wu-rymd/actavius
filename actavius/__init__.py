@@ -4,7 +4,7 @@ import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from .util import create_db, database, drafts, colleges, todo, students
+from util import create_db, database, drafts, colleges, todo, students
 
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
@@ -30,6 +30,11 @@ def index():
                 college_id = request.form.get("college_edit")
                 new_deadline = request.form.get("deadline")
                 colleges.edit_deadline(college_id,new_deadline)
+            elif request.form.get("is_todo"):
+                if request.form.get("is_todo") == "True":
+                    todo.toggle_complete(request.form.get('id'),request.form.get('new_status'))
+                else:
+                    colleges.toggle_complete(request.form.get('id'),request.form.get('new_status'))
             else:
                 delete_this = request.form.get("delete")
                 if delete_this.count("delete_todo") > 0:
@@ -49,12 +54,17 @@ def index():
             temp['id'] = college[0]
             temp['college_name'] = college[1]
             temp['deadline'] = college[2]
+            temp['completed'] = college[3]
             temp['unitid'] = colleges.get_id_from_college_name(college[1])
             temp['task'] = "Application Deadline"
             temp['is_todo'] = False
             college_dict.append(temp)
         all_todos += college_dict
-        all_todos.sort(key = todo_key)
+        completed = list(filter(lambda x: x['completed'] == 1,all_todos))
+        not_completed = list(filter(lambda x: x['completed'] == 0,all_todos))
+        completed.sort(key = todo_key)
+        not_completed.sort(key = todo_key)
+        all_todos = not_completed + completed
         return render_template("index.html", loggedIn=True, username=session['username'], name=session['name'], all_todos = all_todos, all_colleges=college_names)
     return render_template("index.html")
 

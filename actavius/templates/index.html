@@ -5,6 +5,7 @@
 Home Page
 {% endblock %}
 {% block content %}
+<script src="{{url_for('static',filename='index.js')}}"></script>
 
 {% if not loggedIn %}
 <img id="bg-img" src="/static/vessel-unblur-photo.JPG"></img>
@@ -33,6 +34,7 @@ Home Page
 </h3>
 <table class="table table-bordered">
     <tr>
+        <th>Completed?</th>
         <th>Task</th>
         <th>Deadline</th>
         <th>College</th>
@@ -40,6 +42,17 @@ Home Page
     </tr>
     {% for todo in all_todos %}
     <tr>
+        <td>
+            <form id ="{{todo['id']}};{{todo['is_todo']}}" action="/" method="post" hidden>
+                <input type="text" name="id" value="{{todo['id']}}">
+                <input type="text" name="new_status" value="{{1 if todo['completed'] == 0 else 0}}">
+                <input type="text" name="is_todo" value="{{todo['is_todo']}}">
+            </form>
+            {% if todo['completed'] %}
+            <input type="checkbox" name="completed" onchange=updateComplete("{{todo['id']}};{{todo['is_todo']}}") checked></td>
+            {% else %}
+            <input type="checkbox" name="completed" onchange=updateComplete("{{todo['id']}};{{todo['is_todo']}}")></td>
+            {% endif %}
         <td>{{todo['task']}}</td>
         <td>{{todo['deadline']}}</td>
         {% if todo['unitid'] == -1 %}

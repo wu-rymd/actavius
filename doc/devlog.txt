@@ -310,3 +310,8 @@ rayO -- 2019-05-30 13:09
 + Added slight gradient to background of website
 + Navbar is now transparent, needs to become solid when scrolling down
 ==============================================================
+
+jasonL -- 2019-06-05 00:12
+--------------------------------------------------------------
++ Added a completed checkbox that will move completed todos to bottom
+==============================================================
