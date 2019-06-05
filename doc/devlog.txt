@@ -315,3 +315,8 @@ jasonL -- 2019-06-05 00:12
 --------------------------------------------------------------
 + Added a completed checkbox that will move completed todos to bottom
 ==============================================================
+
+tinaW -- 2019-06-05 12:55
+--------------------------------------------------------------
++ Added navbar transition from transparent to white background when scrolling
+==============================================================
