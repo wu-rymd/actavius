@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <a class="navbar-brand brandSize" href="/">ACTAVIUS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -90,9 +90,7 @@
     $(document).ready(function() {
       // Transition effect for navbar
       $(window).scroll(function() {
-        // checks if window is scrolled more than 500px, adds/removes solid class
         if($(this).scrollTop() > 0) {
-            $('.navbar').addClass('navbar-light');
             $('.navbar').addClass('bg-light');
         } else {
             $('.navbar').removeClass('bg-light');
