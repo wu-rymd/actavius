@@ -2,8 +2,10 @@ var width = 480,
 height = 250,
 radius = Math.min(width, height) / 2 - 10;
 
-var accept = acceptance.toFixed(2);
-var acc_rate = [accept,1-accept];
+var acceptance = admit/apply;
+
+var act = (act_25 + act_75) / 2
+var acc_rate = [acceptance,1-acceptance];
 
 var grad_data = graduation/100;
 var grad = [grad_data,1-grad_data];
@@ -63,7 +65,7 @@ var drawPie = function(data,id){
   arcs.append("text")
     .style("text-anchor", "middle")
     .style("font-size","30px")
-    .text(data[0] * 100 + "%");
+    .text((data[0] * 100).toFixed(0) + "%");
 }
 
 var trans1 = function(b) {

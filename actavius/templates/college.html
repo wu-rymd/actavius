@@ -5,13 +5,80 @@
 
 {% block content %}
 <script>
-  var name = "{{name}}"
-  var graduation = {{grad_rate}};
-  var admit = {{admit}};
-  var apply = {{apply}};
-  var acceptance = admit/apply;
-  var act = ( {{act_25}} + {{act_75}} ) / 2;
-  var sat = ({{sat_eng_25}} + {{sat_eng_75}} + {{sat_math_25}} + {{sat_math_75}}) / 2
+      var check = function(val){
+        return val !== "";
+      }
+
+      if(check({{grad_rate}})){
+        var graduation = {{grad_rate}}
+      }
+      else{
+        var graduation = "missing"
+      }
+
+      if(check({{admit}})){
+        var admit = {{admit}}
+      }
+      else{
+        var admit = "missing";
+      }
+
+      if(check({{apply}})){
+        var apply = {{apply}}
+      }
+      else{
+        var apply = "missing";
+      }
+
+      if(check({{apply}})){
+        var graduation = {{grad_rate}}
+      }
+      else{
+        var graduation = "missing";
+      }
+
+      if(check({{act_25}})){
+        var act_25 = {{act_25}}
+      }
+      else{
+        var act_25 = "missing";
+      }
+
+      if(check({{act_75}})){
+        var act_75 = {{act_75}}
+      }
+      else{
+        var act_75 = "missing";
+      }
+
+      if(check({{sat_eng_25}})){
+        var sat_eng_25 = {{sat_eng_25}}
+      }
+      else{
+        var sat_eng_25 = "missing";
+      }
+
+      if(check({{sat_eng_75}})){
+        var sat_eng_75 = {{sat_eng_75}}
+      }
+      else{
+        var sat_eng_75 = "missing";
+      }
+
+      if(check({{sat_math_25}})){
+        var sat_math_25 = {{sat_math_25}}
+      }
+      else{
+        var sat_math_25 = "missing";
+      }
+
+      if(check({{sat_math_75}})){
+        var sat_math_75 = {{sat_math_75}}
+      }
+      else{
+        var sat_math_75 = "missing";
+      }
+      var sat = ({{sat_eng_25}} + {{sat_eng_75}} + {{sat_math_25}} + {{sat_math_75}}) / 2
 </script>
 
 <div class="container-fluid">
