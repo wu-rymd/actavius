@@ -38,6 +38,16 @@ def remove_colleges(college, student_id):
     db.close()
     return True
 
+def get_college_database_id_from_college_name_and_student_id(college_name,student_id):
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    params = (student_id,college_name)
+    command = "SELECT id from colleges WHERE student_id =? AND name=?"
+    c.execute(command,params)
+    data = c.fetchall()
+    db.close()
+    return data
+
 def get_student_colleges(student_id):
     db = sqlite3.connect(DATABASE_LINK)
     c = db.cursor()

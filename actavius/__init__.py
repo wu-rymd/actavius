@@ -343,6 +343,7 @@ def college(college_id):
                 flash("You cannot add the same college twice!", "danger")
                 return redirect(url_for('college', college_id=college_id))
         else:
+            todo.delete_college_todo(colleges.get_college_database_id_from_college_name_and_student_id(college_name,student_id)[0][0])
             if colleges.remove_colleges(college_name, student_id):
                 flash("This college has been removed from your list!", "success")
                 return redirect(url_for('college', college_id=college_id))
