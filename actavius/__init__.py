@@ -4,7 +4,7 @@ import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from .util import create_db, database, drafts, colleges, todo, students
+from util import create_db, database, drafts, colleges, todo, students
 
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
@@ -193,7 +193,6 @@ def profile():
         college_names = []
         for college in data:
             college_names.append((college[1], colleges.get_id_from_college_name(college[1])))
-        print(college_names)
         return render_template("profile.html", loggedIn=True, username=session['username'], name=session['name'], all_colleges=college_names)
     else: # POST method
         delete_form = request.form.get('delete')
@@ -229,7 +228,6 @@ def api():
     if 'of' in query_words: query_words.remove('of')
     if 'at' in query_words: query_words.remove('at')
     if 'college' in query_words: query_words.remove('college')
-    print(query_words)
     f.pop('id', None) #remove ID to college name conversion
     search_matching_names = []
     for name in f['college_names']:
@@ -237,7 +235,6 @@ def api():
             if word in name.lower():
                 search_matching_names.append(name)
                 break
-    print(search_matching_names)
     results_dict = { "college_names":[] , "id":{} , "names":{} }
     for name in search_matching_names:
         results_dict["college_names"].append(name)
@@ -282,7 +279,6 @@ def college(college_id):
         admit = college_data["ADM2017.Admissions total"]
         apply = college_data['ADM2017.Applicants total']
         tuition = str(tuition)
-        print(finaid_data)
         for key in finaid_data.keys():
             try:
                 x = int(finaid_data[key])
@@ -336,12 +332,10 @@ def college(college_id):
             if college_name == row[1]:
                 add_a_college = False
                 break
-        print(add_a_college)
         if add_a_college:
             deadline = request.form['deadline']
             # submitted = request.form['submitted']
             submitted = False
-            # print(name, deadline, submitted, student_id)
             if colleges.add_colleges(college_name, deadline, submitted, student_id):
                 flash("This college has been added to your list!", "success")
                 return redirect(url_for('college', college_id=college_id))
