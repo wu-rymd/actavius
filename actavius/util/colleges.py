@@ -63,7 +63,6 @@ def get_college_from_id(college_id):
     FILE_DIR += '/../' # points to util, ../ to go back to Flask root
 
     FILE_LINK = DIR + "data/colleges.json"
-    # print(json.loads(open(FILE_LINK,'r').read()).keys())
     try:
         id_converter = json.loads(open(FILE_LINK,'r').read())['id']
         return id_converter[str(college_id)]
@@ -111,6 +110,15 @@ def edit_deadline(college_id,deadline):
     c = db.cursor()
     params = (deadline,college_id)
     command = "UPDATE colleges SET deadline = ? WHERE id = ?"
+    c.execute(command, params)
+    db.commit()
+    db.close()
+
+def toggle_complete(college_id,status):
+    db = sqlite3.connect(DATABASE_LINK)
+    c = db.cursor()
+    params = (status,college_id)
+    command = "UPDATE colleges SET submitted = ? WHERE id = ?"
     c.execute(command, params)
     db.commit()
     db.close()
