@@ -351,8 +351,9 @@ def college(college_id):
                 flash("You cannot remove the same college twice!", "danger")
                 return redirect(url_for('college', college_id=college_id))
 
+create_db.setup() #outside b/c .wsgi not run file
+            
 if __name__ == "__main__":
     app.debug = True
     print("creating the db")
-    create_db.setup() #setup database
     app.run()
