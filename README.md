@@ -51,7 +51,7 @@ To exit your virtual environment, run the command `$ deactivate`.
 
 ### Install and run on Apache2
 
-This application is hosted on our droplet at [http://134.209.47.180/](http://134.209.47.180/).
+This application is hosted on our droplet at [http://104.248.13.208/](http://104.248.13.208/).
 
 To host this application on your own droplet, follow the following instructions:
 
