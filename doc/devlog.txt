@@ -22,7 +22,7 @@ raymondW -- 2018-06-06 16:05
 * Strikethrough text regarding use of College Scorecard Data API. We did not end up using this API.
 * Strikethorugh text regarding use of College AI API. We submitted an API key request via email, but the webmaster was unresponsive, and we did not end up using this API.
 * We decided that instead of making the financial aid information for each college on a separate page, we could just show the information on the college profile, which already has other statistics about a specific college.
-* We updated the database schema to more accurately reflect the current state of our database. 
+* We updated the database schema to more accurately reflect the current state of our database.
 
 
  ______   ______   __   __   __       ______   _______
@@ -359,4 +359,11 @@ raymondW -- 2019-06-06 16:05
 --------------------------------------------------------------
 + Added flash message on user dashboard to remind user of deadlines within next 7 days
 + Added new version of design doc to repo
+==============================================================
+
+rayO -- 2019-06-06 19:50
+--------------------------------------------------------------
++ Modified __init__.py to identify missing values
++ Missing datapoints no longer break every other chart
++ Missing datapoints are indicated by a message on the college page
 ==============================================================
