@@ -51,58 +51,54 @@ To exit your virtual environment, run the command `$ deactivate`.
 
 ### Install and run on Apache2
 
-This application is hosted on our droplet at [http://142.93.69.78/](http://142.93.69.78/).
+This application is hosted on our droplet at [http://68.183.148.3/](http://68.183.148.3/).
 
 To host this application on your own droplet, follow the following instructions:
 
 First, create a DigitalOcean droplet running ubuntu v18.04 x64.
 
 * Log in as `root` via ssh
-* Add a new account with superuser access
-* Allowing ssh into new account
+* [Add a new account with superuser access](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart)
+* [Allowing ssh into new account](https://groups.google.com/a/stuy.edu/d/msg/softdev18-19/UIyq_zQXiN0/64EndEQMEAAJ)
 * Log out of root account
 * Log into your new account, and install the appropriate packages:
 ```
 $ sudo apt update
 $ sudo apt upgrade
-$ sudo -H apt install libapache2-mod-wsgi-py3
+$ sudo apt install libapache2-mod-wsgi-py3
 $ sudo apt install python3-pip
-```
-
-* Change the directory to the root directory of your new account: ```$ cd```
-
-* Clone this repository into your root directory
-```
-$ git clone https://github.com/raywu6/actavius.git
-```
-
-* Installing pip3 dependencies
-```
-$ sudo -H pip3 install -r actavius/actavius/requirements.txt
-```
-
-* Add `www-data` write permissions to folder
-```
-$ sudo chgrp -R www-data actavius
-$ sudo chmod -R g+w actavius
-```
-    * Note that files in this folder are now write-protected. You must be in `sudo` mode to edit.
-
-* Move the project folder into `/var/www`
-```
-$ sudo mv actavius /var/www
-$ sudo cd /var/www
-```
-
-* Put `.conf` file in web serving config folder
-```
-$ sudo mv /var/www/actavius/actavius.conf /etc/apache2/sites-available
 ```
 
 * Install apache2
  ```
  $ sudo apt install apache2
  ```
+
+* Change the directory: ```$ cd /var/www```
+
+* Clone this repository into /var/www
+```
+$ sudo git clone https://github.com/raywu6/actavius.git
+```
+
+* Installing pip3 dependencies
+```
+$ sudo pip3 install -r /var/www/actavius/requirements.txt
+```
+
+* Add `www-data` write permissions to folder
+```
+$ sudo chgrp -R www-data /var/www/actavius
+$ sudo chmod -R g+w /var/www/actavius
+```
+
+* **You must edit `/var/www/actavius/actavius.conf` so that the IP address after `ServerName` is the IP address of your DigitalOcean droplet.**
+  * Note that files in this folder are now write-protected. You must be in `sudo` mode to edit.
+
+* Put `.conf` file in web serving config folder
+```
+$ sudo mv /var/www/actavius/actavius.conf /etc/apache2/sites-available
+```
 
 * Enable apache2
 ```
@@ -112,6 +108,11 @@ $ sudo a2ensite actavius
 * Enable WSGI module
 ```
 $ sudo a2enmod wsgi
+```
+
+* If prompted to activate the new configuration, run
+```
+$ systemctl reload apache2
 ```
 
 * Reload and restart apache2
