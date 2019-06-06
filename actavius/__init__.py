@@ -4,7 +4,7 @@ import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from util import create_db, database, drafts, colleges, todo, students
+from .util import create_db, database, drafts, colleges, todo, students
 
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
