@@ -15,6 +15,15 @@ raymondW -- 2018-05-12 21:40
 * Based on comments from peer review, we found that the extra feature of "gamifying" the college application process was unclear, and we believe that at this time it is not in the core of what we want our web app to be. Accordingly, we decided to move this to the bottom of priorities in extra features -- to be rediscussed if time permits.
 * Another suggestion made by a peer was to allow users to specify interests or to allow ranking/priority of colleges. We believe that this feature could be helpful, but should be an extra feature as we want to focus on the convenience of combining several services into one, rather than diving into a single feature that Naviance already does well.
 
+------------------------------------------
+DEVELOPMENT DESIGN DOC CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+raymondW -- 2018-06-06 16:05
+* Strikethrough text regarding use of College Scorecard Data API. We did not end up using this API.
+* Strikethorugh text regarding use of College AI API. We submitted an API key request via email, but the webmaster was unresponsive, and we did not end up using this API.
+* We decided that instead of making the financial aid information for each college on a separate page, we could just show the information on the college profile, which already has other statistics about a specific college.
+* We updated the database schema to more accurately reflect the current state of our database. 
+
 
  ______   ______   __   __   __       ______   _______
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
@@ -344,4 +353,10 @@ raymondW -- 2019-06-05 23:55
 + Updated apache2 launch instructions in README
 + Added placeholder for IP in actavius.conf
 + Recreated DigitalOcean droplet and test by started from scratch
+==============================================================
+
+raymondW -- 2019-06-06 16:05
+--------------------------------------------------------------
++ Added flash message on user dashboard to remind user of deadlines within next 7 days
++ Added new version of design doc to repo
 ==============================================================
