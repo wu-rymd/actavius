@@ -63,9 +63,7 @@
       <!-- flashed messages -->
       {% set msgs = get_flashed_messages( with_categories=true ) %}
       {% for category, msg in msgs %}
-      <div class="alert alert-{{ category }}" role="alert">
-        {{ msg }}
-      </div>
+      <div class="alert alert-{{ category }}" role="alert">{{ msg }}</div>
       {% endfor %}
       <!-- end flashed messages -->
 

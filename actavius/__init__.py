@@ -62,6 +62,8 @@ def index():
         all_todos += college_dict
         completed = list(filter(lambda x: x['completed'] == 1,all_todos))
         not_completed = list(filter(lambda x: x['completed'] == 0,all_todos))
+        flash("You're all caught up for the next week! Great work!", "success")
+        flash("You have x deadlines within the next week!", "warning")
         completed.sort(key = todo_key)
         not_completed.sort(key = todo_key)
         all_todos = not_completed + completed
