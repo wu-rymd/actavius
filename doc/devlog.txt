@@ -311,6 +311,11 @@ rayO -- 2019-05-30 13:09
 + Navbar is now transparent, needs to become solid when scrolling down
 ==============================================================
 
+raymondW -- 2019-05-30 13:20
+--------------------------------------------------------------
++ Fixed bug that inconsistently shows flashed message when there is insufficient data in the provided JSONs and CSVs
+==============================================================
+
 jasonL -- 2019-06-05 00:12
 --------------------------------------------------------------
 + Added a completed checkbox that will move completed todos to bottom
@@ -321,8 +326,22 @@ tinaW -- 2019-06-05 12:55
 + Added navbar transition from transparent to white background when scrolling
 ==============================================================
 
-rayO -- 2019-06-05
+raymondW -- 2019-06-05 13:17
+--------------------------------------------------------------
++ Added message explaining how to delete college application deadline in to-do edit modal
++ Moved My Colleges link to navbar (out of dropdown when logged in)
+==============================================================
+
+rayO -- 2019-06-05 14:46
 --------------------------------------------------------------
 + Fixed issue with percentage truncation
 + Issue with missing values in javascript need to be fixed
+==============================================================
+
+raymondW -- 2019-06-05 23:55
+--------------------------------------------------------------
++ Added passlib to requirements.txt
++ Updated apache2 launch instructions in README
++ Added placeholder for IP in actavius.conf
++ Recreated DigitalOcean droplet and test by started from scratch
 ==============================================================
