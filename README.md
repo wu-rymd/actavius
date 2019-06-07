@@ -12,6 +12,16 @@
 ## Overview
 Actavius combines all of the services that a student uses to keep track of their college application activities, such that it is accessible all on one website. In addition to exploring different colleges and looking up details about universities, the user is able to keep track of where they are on a timeline with the help of a to-do list that is populated with deadlines. There is a financial aid page which will allow the user to calculate how much money they might need to spend on a college as well.
 
+## Necessary packages
+You can download all of the necessary packages by running `pip install -r requirements.txt`.
+
+* **Flask** (version 7.0): Python web microframework
+  * `pip install flask`
+* **Jinja2** (version 2.10.1): HTML templating
+  * *Included in `pip install Flask`*
+* **passlib** (version 1.7.1): Hashing passwords in database
+  * `pip install passlib`
+
 ## Launch Instructions
 ### Install and run on localhost
 Most of our dependencies can be installed through simple pip command listed below, however, you will need Python 3 and SQLite3 on your system which must be installed. Python 3 is the programming language used to run the application while sqlite3 is used to maintain our databases. Both of these are essential. If, in your terminal, running `$ python3` invokes the Python 3 interpreter, and running `$ sqlite3` opens the SQLite3 shell, you are good to go. If not, please follow the links below.
