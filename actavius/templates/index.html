@@ -229,7 +229,7 @@ Home Page
           tableContents[i+1].children[2].innerHTML += '&nbsp; <small><span class="badge badge-pill badge-warning">' + (day - today.getDate()) + ' days</span></small>';
         }
       }
-      else if (year <= today.getFullYear() && month <= today.getMonth() && day < today.getDate()) {
+      else if ((year < today.getFullYear()) || (year==today.getFullYear() && month < today.getMonth()) || (year==today.getFullYear() && month == today.getMonth() && day < today.getDate())) {
         overdue++;
         tableContents[i+1].children[2].style.color = "red";
         tableContents[i+1].children[2].style.fontWeight = "bold";
