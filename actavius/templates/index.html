@@ -187,7 +187,7 @@ Home Page
       else if (allFlashes[i].innerHTML == "You have x deadlines that are overdue!")
         var overdueFlash = allFlashes[i];
     }
-    if (typeof deadlineFlash == 'undefined') { return false; }
+    if (typeof deadlineFlash == 'undefined' || typeof allDoneFlash == 'undefined' || typeof overdueFlash == 'undefined') { return false; }
     // console.log(deadlineFlash);
     // console.log(deadlineFlash.innerHTML);
     var tableContents = document.getElementsByTagName('tr');
@@ -195,7 +195,8 @@ Home Page
     if (tableContents.length == 1) {
       deadlineFlash.remove();
       allDoneFlash.remove();
-      return False;
+      overdueFlash.remove();
+      return false;
     }
     var dates = [];
     for (var i=1 ; i<tableContents.length ; i++) {
