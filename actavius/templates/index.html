@@ -62,7 +62,13 @@ Home Page
 </td>
 <td>{{todo['deadline']}}</td>
 {% if todo['unitid'] == -1 %}
-<td>{{todo['college_name']}}</td>
+<td>
+  {% if todo['college_name'] == "All Colleges" %}
+  <em> {{todo['college_name']}} </em>
+  {% else %}
+  {{todo['college_name']}}
+  {% endif %}
+</td>
 {% else %}
 <td><a href="/college/{{todo['unitid']}}">{{todo['college_name']}}</a></td>
 {% endif %}
