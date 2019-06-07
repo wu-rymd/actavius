@@ -26,106 +26,113 @@ Home Page
 {% if loggedIn %}
 <h1 class="mb-3">Hi, {{ name }}!</h1>
 <h3 class="mb-3">To-do list
-<span style=" display: inline; float:right;">
+  <span style=" display: inline; float:right;">
     <form action="#" method="POST" style="display:inline;">
-        <input style="display:inline; float: right;" type="button" style="opacity:.85" class="btn btn-success" name="new-todo" value="Add to-do" data-toggle="modal" data-target="#modal-add">
+      <input style="display:inline; float: right;" type="button" style="opacity:.85" class="btn btn-success" name="new-todo" value="Add to-do" data-toggle="modal" data-target="#modal-add">
     </form>
-</span>
+  </span>
 </h3>
 <table class="table table-bordered">
-    <tr>
-        <th>Completed?</th>
-        <th>Task</th>
-        <th>Deadline</th>
-        <th>College</th>
-        <th>Actions</th>
-    </tr>
-    {% for todo in all_todos %}
-    <tr>
-        <td>
-            <form id ="{{todo['id']}};{{todo['is_todo']}}" action="/" method="post" hidden>
-                <input type="text" name="id" value="{{todo['id']}}">
-                <input type="text" name="new_status" value="{{1 if todo['completed'] == 0 else 0}}">
-                <input type="text" name="is_todo" value="{{todo['is_todo']}}">
-            </form>
-            {% if todo['completed'] %}
-            <input type="checkbox" name="completed" onchange=updateComplete("{{todo['id']}};{{todo['is_todo']}}") checked></td>
-            {% else %}
-            <input type="checkbox" name="completed" onchange=updateComplete("{{todo['id']}};{{todo['is_todo']}}")></td>
-            {% endif %}
-        <td>{{todo['task']}}</td>
-        <td>{{todo['deadline']}}</td>
-        {% if todo['unitid'] == -1 %}
-        <td>{{todo['college_name']}}</td>
-        {% else %}
-        <td><a href="/college/{{todo['unitid']}}">{{todo['college_name']}}</a></td>
-        {% endif %}
-        <td>
-            {% if todo['is_todo'] %}
-            <form action="/" method="post">
-                <button class="btn btn-outline-danger" name="delete" value="delete_todo{{todo['id']}}">Delete</button>
-            </form>
-            {% else %}
-            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#modal-edit{{todo['id']}}">Edit</button>
-            {% endif %}
-        </td>
-    </tr>
-    {% endfor %}
+  <tr>
+    <th>Completed?</th>
+    <th>Task</th>
+    <th>Deadline</th>
+    <th>College</th>
+    <th>Actions</th>
+  </tr>
+  {% for todo in all_todos %}
+  <tr>
+    <td>
+      <form id ="{{todo['id']}};{{todo['is_todo']}}" action="/" method="post" hidden>
+        <input type="text" name="id" value="{{todo['id']}}">
+        <input type="text" name="new_status" value="{{1 if todo['completed'] == 0 else 0}}">
+        <input type="text" name="is_todo" value="{{todo['is_todo']}}">
+      </form>
+      {% if todo['completed'] %}
+      <input type="checkbox" name="completed" onchange=updateComplete("{{todo['id']}};{{todo['is_todo']}}") checked></td>
+    {% else %}
+    <input type="checkbox" name="completed" onchange=updateComplete("{{todo['id']}};{{todo['is_todo']}}")></td>
+{% endif %}
+<td>
+  {% if todo['task'] == "Application Deadline" %}
+  <b> {{todo['task']}} </b>
+  {% else %}
+  {{todo['task']}}
+  {% endif %}
+</td>
+<td>{{todo['deadline']}}</td>
+{% if todo['unitid'] == -1 %}
+<td>{{todo['college_name']}}</td>
+{% else %}
+<td><a href="/college/{{todo['unitid']}}">{{todo['college_name']}}</a></td>
+{% endif %}
+<td>
+  {% if todo['is_todo'] %}
+  <form action="/" method="post">
+    <button class="btn btn-outline-danger" name="delete" value="delete_todo{{todo['id']}}">Delete</button>
+  </form>
+  {% else %}
+  <button class="btn btn-outline-info" data-toggle="modal" data-target="#modal-edit{{todo['id']}}">Edit</button>
+  {% endif %}
+</td>
+</tr>
+{% endfor %}
 </table>
 
 <div class="modal fade" id="modal-add" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><em>Add a To-do</em></h5>
-            </div>
-            <form class="was-validated" method="POST" action="/" style="padding: 15px;">
-                <div class="modal-body">
-                    <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do</label>
-                    <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
-                    <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
-                    <div class="form-group" >
-                        <select class="form-control" name="college">
-                            <option value="-1">All Colleges</option>
-                            {% for college in all_colleges %}
-                            <option value="{{college[0]}}">{{college[1]}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
-                    <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
-                </div>
-                <div class="modal-footer">
-                    <input class="btn btn-success" type="submit" name="add" value="Add">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><em>Add a To-do</em></h5>
+      </div>
+      <form class="was-validated" method="POST" action="/" style="padding: 15px;">
+        <div class="modal-body">
+          <label for="task" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do</label>
+          <input class="form-control my-1" type="text" name="task" placeholder="Add a task..." autofocus required>
+          <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">College:</label>
+          <div class="form-group" >
+            <select class="form-control" name="college">
+              <option value="-1">All Colleges</option>
+              {% for college in all_colleges %}
+              <option value="{{college[0]}}">{{college[1]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
+          <input class="form-control my-1" type="date" name="deadline" placeholder="YYYY-MM-DD" autofocus required>
         </div>
+        <div class="modal-footer">
+          <input class="btn btn-success" type="submit" name="add" value="Add">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 {% for college in all_colleges %}
 <div class="modal fade" id="modal-edit{{college[0]}}" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><em>Edit College Deadline</em></h5>
-            </div>
-            <form class="was-validated" method="POST" action="/" style="padding: 15px;">
-                <div class="modal-body">
-                    <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
-                    <input class="form-control my-1" type="date" name="deadline" value="{{college[2]}}" autofocus required>
-                </div>
-                <div>
-                  <em>To delete the application deadline to-do, as well as all to-dos for a given college, remove this college from the My colleges page accessible from the navbar.</em>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" type="submit" name="college_edit" value="{{college[0]}}">Edit</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><em>Edit College Deadline</em></h5>
+      </div>
+      <form class="was-validated" method="POST" action="/" style="padding: 15px;">
+        <div class="modal-body">
+          <label for="deadline" class="text-center col-sm-0 col-form-label col-form-label-lg">To-do Deadline:</label>
+          <input class="form-control my-1" type="date" name="deadline" value="{{college[2]}}" autofocus required>
         </div>
+        <div>
+          <small><em>To delete the application deadline to-do, as well as all to-dos for a given college, remove this college from the My colleges page accessible from the navbar.</em></small>
+          <br><br>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" type="submit" name="college_edit" value="{{college[0]}}">Edit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 {% endfor %}
 {% endif %}
@@ -134,31 +141,31 @@ Home Page
 
 {% block style %}
 <style>
-    #bg-img {
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-    img {
-        filter: blur(15px);
-        -webkit-filter: blur(15px);
-        flex-shrink: 0;
-        min-width: 100%;
-        object-fit: cover;
-    }
-    #footer {
-        color: lightgray;
-    }
-    .jumbo-text{
-        font-size: 170%;
-        font-weight: 300;
-    }
+  #bg-img {
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+  }
+  img {
+      filter: blur(15px);
+      -webkit-filter: blur(15px);
+      flex-shrink: 0;
+      min-width: 100%;
+      object-fit: cover;
+  }
+  #footer {
+      color: lightgray;
+  }
+  .jumbo-text{
+      font-size: 170%;
+      font-weight: 300;
+  }
 </style>
 {% endblock %}
 
@@ -195,15 +202,27 @@ Home Page
     var num_within_week = 0;
     var overdue = 0
     for (var i=0 ; i<dates.length ; i++) {
-      var year = dates[i].split("-")[0];
+      var year = parseInt(dates[i].split("-")[0]);
       var month = parseInt(dates[i].split("-")[1])-1; //Jan is 0, Feb is 1, ...
-      var day = dates[i].split("-")[2];
+      var day = parseInt(dates[i].split("-")[2]);
       var thisDate = new Date(year, month, day);
-      console.log(thisDate);
-      console.log(today);
-      console.log(thisDate - today);
-      if (thisDate - today < 604800000 && thisDate - today > 0) { num_within_week++; }
-      else if (thisDate - today < 0) {
+      if (thisDate - today < 604800000 && thisDate - today > -86400000) {
+        num_within_week++;
+        tableContents[i+1].children[2].style.color = "darkorange";
+        tableContents[i+1].children[2].style.fontWeight = "bold";
+        tableContents[i+1].children[2].style.fontSize = "larger";
+        if (today.getDate() == day) {
+          tableContents[i+1].children[2].innerHTML += '&nbsp; <small><span class="badge badge-pill badge-warning">Today</span></small>';
+        }
+        else if (day == today.getDate()+1) {
+          tableContents[i+1].children[2].innerHTML += '&nbsp; <small><span class="badge badge-pill badge-warning">Tomorrow</span></small>';
+        }
+        else {
+          console.log(">>>>", today.getDate(), day);
+          tableContents[i+1].children[2].innerHTML += '&nbsp; <small><span class="badge badge-pill badge-warning">' + (day - today.getDate()) + ' days</span></small>';
+        }
+      }
+      else if (year <= today.getFullYear() && month <= today.getMonth() && day < today.getDate()) {
         overdue++;
         tableContents[i+1].children[2].style.color = "red";
         tableContents[i+1].children[2].style.fontWeight = "bold";
@@ -227,7 +246,7 @@ Home Page
       if (overdue >= 2)
         overdueFlash.innerHTML = "You have <b><big>" + overdue + "</big></b> deadlines that are overdue!";
       else
-        overdueFlash.innerHTML = "You have <b><big>" + overdue + "</big></b> deadlines that are overdue!";
+        overdueFlash.innerHTML = "You have <b><big>" + overdue + "</big></b> deadline that is overdue!";
     }
     else {
       overdueFlash.remove();
@@ -235,5 +254,5 @@ Home Page
   }
 
   updateFlash();
-</script>
+  </script>
 {% endblock %}
