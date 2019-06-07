@@ -171,13 +171,19 @@ Home Page
         var deadlineFlash = allFlashes[i];
       else if (allFlashes[i].innerHTML == "You're all caught up for the next week! Great work!")
         var allDoneFlash = allFlashes[i];
+      else if (allFlashes[i].innerHTML == "You have x deadlines that are overdue!")
+        var overdueFlash = allFlashes[i];
     }
     if (typeof deadlineFlash == 'undefined') { return false; }
     // console.log(deadlineFlash);
     // console.log(deadlineFlash.innerHTML);
     var tableContents = document.getElementsByTagName('tr');
     // console.log(tableContents);
-    if (tableContents.length == 1) { return False; }
+    if (tableContents.length == 1) {
+      deadlineFlash.remove();
+      allDoneFlash.remove();
+      return False;
+    }
     var dates = [];
     for (var i=1 ; i<tableContents.length ; i++) {
       if (!tableContents[i].children[0].children[1].checked) {
@@ -187,18 +193,25 @@ Home Page
     }
     var today = new Date();
     var num_within_week = 0;
+    var overdue = 0
     for (var i=0 ; i<dates.length ; i++) {
       var year = dates[i].split("-")[0];
       var month = parseInt(dates[i].split("-")[1])-1; //Jan is 0, Feb is 1, ...
       var day = dates[i].split("-")[2];
       var thisDate = new Date(year, month, day);
-      // console.log(thisDate);
-      // console.log(today);
-      // console.log(thisDate - today);
-      if (thisDate - today < 604800000) { num_within_week++; }
+      console.log(thisDate);
+      console.log(today);
+      console.log(thisDate - today);
+      if (thisDate - today < 604800000 && thisDate - today > 0) { num_within_week++; }
+      else if (thisDate - today < 0) {
+        overdue++;
+        tableContents[i+1].children[2].style.color = "red";
+        tableContents[i+1].children[2].style.fontWeight = "bold";
+        tableContents[i+1].children[2].style.fontSize = "larger";
+      }
     }
     console.log(num_within_week);
-    if (num_within_week == 0) { //remove flash
+    if (num_within_week == 0) { //show all done only
       deadlineFlash.remove();
       allDoneFlash.innerHTML = "<b> " + allDoneFlash.innerHTML + " </b>";
     }
@@ -209,7 +222,16 @@ Home Page
       else
         deadlineFlash.innerHTML = "You have <b><big>" + num_within_week + "</big></b> deadline within the next week!";
     }
-    
+    if (overdue != 0) {
+      allDoneFlash.remove()
+      if (overdue >= 2)
+        overdueFlash.innerHTML = "You have <b><big>" + overdue + "</big></b> deadlines that are overdue!";
+      else
+        overdueFlash.innerHTML = "You have <b><big>" + overdue + "</big></b> deadlines that are overdue!";
+    }
+    else {
+      overdueFlash.remove();
+    }
   }
 
   updateFlash();
