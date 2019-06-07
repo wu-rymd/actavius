@@ -4,7 +4,7 @@ import csv, json
 
 from flask import Flask, jsonify, render_template, request, session, redirect, url_for, flash #pip install flask
 
-from .util import create_db, database, drafts, colleges, todo, students
+from util import create_db, database, drafts, colleges, todo, students
 
 # TODO: check for EACH return render_template ... loggedIn=True, username=session['username'], name=session['name'] ... passed as arg!
 
@@ -266,6 +266,7 @@ def college(college_id):
         for key in check_these_keys:
             if college_data[key] == "":
                 counter += 1
+                college_data[key] = "missing"
         for key in finaid_data.keys():
             if finaid_data[key] == "":
                 counter += 1
@@ -355,7 +356,7 @@ def college(college_id):
                 return redirect(url_for('college', college_id=college_id))
 
 create_db.setup() #outside b/c .wsgi not run file
-            
+
 if __name__ == "__main__":
     app.debug = True
     print("creating the db")

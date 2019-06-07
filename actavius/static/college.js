@@ -2,27 +2,11 @@ var width = 480,
 height = 250,
 radius = Math.min(width, height) / 2 - 10;
 
-var acceptance = admit/apply;
-
-var act = (act_25 + act_75) / 2
-var acc_rate = [acceptance,1-acceptance];
-
-var grad_data = graduation/100;
-var grad = [grad_data,1-grad_data];
-
-var act_data = act/36;
-var act_rate = [act_data]
-
-
-var sat_data = sat/1600
-var sat_rate = [sat_data]
 
 document.getElementById('search').onclick = function() {
     window.open('http://google.com/search?q='+name);
 };
 
-document.getElementById("avgSAT").innerHTML = "The average SAT score is " + sat + " out of 1600";
-document.getElementById("avgACT").innerHTML = "The average ACT score is " + Math.round(act) + " out of 36";
 
 var q = name;
 document.getElementById('search').onclick = function() {
@@ -74,9 +58,6 @@ var trans1 = function(b) {
   return function(t) { return arc(i(t)); };
 }
 
-drawPie(grad,"#graduation");
-drawPie(acc_rate,"#acceptance");
-
 var scoreBar = function(data,id){
   svg = d3.select(id)
     .append("svg")
@@ -107,5 +88,45 @@ var scoreBar = function(data,id){
     .attr("width", data[0] * 500);
 }
 
-scoreBar(act_rate,"#act");
-scoreBar(sat_rate,"#sat");
+var makeGraph = function(val){
+  return val !== "missing"
+}
+if(makeGraph(graduation)){
+  var grad_data = parseInt(graduation)/100;
+  var grad = [grad_data,1-grad_data];
+  drawPie(grad,"#graduation");
+}
+else {
+  document.getElementById("graduation").innerHTML = "<h1 class=\"display-4\">This data is not available</h1>";
+}
+
+if(makeGraph(act_25) && makeGraph(act_75)){
+  var act = (parseInt(act_25) + parseInt(act_75)) / 2
+  var act_data = act/36;
+  var act_rate = [act_data]
+  scoreBar(act_rate,"#act")
+  document.getElementById("avgACT").innerHTML = "The average ACT score is " + Math.round(act) + " out of 36";
+}
+else {
+  document.getElementById("act").innerHTML = "<h1 class=\"display-4\">This data is not available</h1>";
+}
+
+if(makeGraph(sat_eng_25) && makeGraph(sat_eng_75) && makeGraph(sat_math_25) && makeGraph(sat_math_75)){
+  var sat = (parseInt(sat_eng_25) + parseInt(sat_eng_75) + parseInt(sat_math_25) + parseInt(sat_math_75)) / 2
+  var sat_data = sat/1600
+  var sat_rate = [sat_data]
+  scoreBar(sat_rate,"#sat");
+  document.getElementById("avgSAT").innerHTML = "The average SAT score is " + sat + " out of 1600";
+}
+else {
+  document.getElementById("sat").innerHTML = "<h1 class=\"display-4\">This data is not available</h1>";
+}
+
+if(makeGraph(admit) && makeGraph(apply)){
+  var acceptance = parseInt(admit)/parseInt(apply);
+  var acc_rate = [acceptance,1-acceptance];
+  drawPie(acc_rate,"#acceptance");
+}
+else {
+  document.getElementById("acceptance").innerHTML = "<h1 class=\"display-4\">This data is not available</h1>";
+}
