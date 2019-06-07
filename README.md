@@ -18,7 +18,7 @@ You can download all of the necessary packages by running `pip install -r requir
 * **Flask** (version 7.0): Python web microframework
   * `pip install flask`
 * **Jinja2** (version 2.10.1): HTML templating
-  * *Included in `pip install Flask`*
+  * *Included in `pip install flask`*
 * **passlib** (version 1.7.1): Hashing passwords in database
   * `pip install passlib`
 
